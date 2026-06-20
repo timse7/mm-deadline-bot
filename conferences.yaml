@@ -1,6 +1,6 @@
 # Multimedia Conference Deadlines
 # Each conference can have multiple deadlines with types:
-#   submission, rebuttal, notification, camera_ready, conference
+#   registration, submission, rebuttal, notification, camera_ready, conference
 #
 # Update this file to add/remove conferences or adjust dates.
 
@@ -8,7 +8,7 @@ conferences:
   - name: IEEE VCIP 2026
     short: VCIP 2026
     url: https://vcip-2026.org/
-    tags: ["#VCIP2026", "#MultimediaResearch"]
+    tags: ["#VCIP2026"]
     deadlines:
       - type: submission
         label: Full Paper Submission
@@ -23,3 +23,20 @@ conferences:
         label: Conference Starts
         date: "2026-12-13"
 
+  - name: ACM MMSys 2027
+    short: MMSys 2027
+    url: https://2027.acmmmsys.org/
+    tags: ["#MMSys"]
+    deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2026-09-17"
+      - type: notification
+        label: Acceptance Notification
+        date: "2026-10-24"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2027-02-19"
+      - type: conference
+        label: Conference Starts
+        date: "2027-03-30"

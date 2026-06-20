@@ -41,6 +41,7 @@ MILESTONE_DAYS = {90, 60, 30, 14, 7, 3, 2, 1}
 
 # Deadline type emojis
 TYPE_EMOJI = {
+    "registration": "📋",
     "submission": "📝",
     "rebuttal": "💬",
     "notification": "📬",
@@ -49,6 +50,7 @@ TYPE_EMOJI = {
 }
 
 TYPE_LABEL = {
+    "registration": "Paper Registration Deadline",
     "submission": "Submission Deadline",
     "rebuttal": "Rebuttal Deadline",
     "notification": "Notification",

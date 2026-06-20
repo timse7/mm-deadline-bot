@@ -23,6 +23,21 @@ conferences:
         label: Conference Starts
         date: "2026-12-13"
 
+  - name: IEEE MMSP 2026
+    short: MMSP 2026
+    url: https://attend.ieee.org/mmsp-2026/
+    tags: ["#MMSP2026", "#MultimediaSignalProcessing"]
+    deadlines:
+      - type: notification
+        label: Acceptance Notification
+        date: "2026-07-17"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2026-07-31"
+      - type: conference
+        label: Conference Starts
+        date: "2026-09-22"
+
   - name: ACM MMSys 2027
     short: MMSys 2027
     url: https://2027.acmmmsys.org/

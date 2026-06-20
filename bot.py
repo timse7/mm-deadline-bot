@@ -217,8 +217,8 @@ def get_client() -> Client:
     did = resolver.handle.resolve(handle)
     did_doc = resolver.did.resolve(did)
     pds_url = next(
-        (s["serviceEndpoint"] for s in did_doc.get("service", [])
-         if s.get("id") == "#atproto_pds"),
+        (s.service_endpoint for s in (did_doc.service or [])
+         if s.id == "#atproto_pds"),
         "https://bsky.social",
     )
     log.info("Resolved PDS for %s: %s", handle, pds_url)

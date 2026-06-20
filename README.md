@@ -1,5 +1,7 @@
 # Multimedia Conference Deadline Bot 🎤
 
+![MM Countdown Bot](mmcountdown-ring-400.png)
+
 A Bluesky bot that posts daily countdown reminders for multimedia research conference deadlines (paper submissions, notifications, camera-ready, etc.).
 
 ## Setup

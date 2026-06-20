@@ -1,0 +1,27 @@
+name: Post deadline countdown
+
+on:
+  schedule:
+    - cron: '0 9 * * *'   # 09:00 UTC every day
+  workflow_dispatch:       # allow manual trigger from the GitHub UI
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Post to Bluesky
+        run: python bot.py
+        env:
+          BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
+          BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}

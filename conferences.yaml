@@ -1,0 +1,114 @@
+# Multimedia Conference Deadlines
+# Each conference can have multiple deadlines with types:
+#   submission, rebuttal, notification, camera_ready, conference
+#
+# Update this file to add/remove conferences or adjust dates.
+
+conferences:
+  - name: ACM Multimedia 2026
+    short: ACMMM 2026
+    url: https://acmmm2026.org
+    tags: ["#ACMMM2026", "#MultimediaResearch"]
+    deadlines:
+      - type: submission
+        label: Abstract Submission
+        date: "2026-04-04"
+      - type: submission
+        label: Full Paper Submission
+        date: "2026-04-11"
+      - type: rebuttal
+        label: Rebuttal Period Ends
+        date: "2026-06-06"
+      - type: notification
+        label: Acceptance Notification
+        date: "2026-06-27"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2026-07-25"
+      - type: conference
+        label: Conference Starts
+        date: "2026-10-12"
+
+  - name: IEEE ICME 2026
+    short: ICME 2026
+    url: https://2026.ieeeicme.org
+    tags: ["#IEEEICME2026", "#MultimediaEngineering"]
+    deadlines:
+      - type: submission
+        label: Paper Submission
+        date: "2025-12-13"
+      - type: notification
+        label: Acceptance Notification
+        date: "2026-03-01"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2026-03-29"
+      - type: conference
+        label: Conference Starts
+        date: "2026-06-22"
+
+  - name: MMSys 2026
+    short: MMSys 2026
+    url: https://mmsys2026.hotcrp.com
+    tags: ["#MMSys2026", "#MultimediaSystems"]
+    deadlines:
+      - type: submission
+        label: Paper Submission
+        date: "2026-01-17"
+      - type: notification
+        label: Acceptance Notification
+        date: "2026-03-13"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2026-04-10"
+      - type: conference
+        label: Conference Starts
+        date: "2026-06-09"
+
+  - name: NOSSDAV 2026
+    short: NOSSDAV 2026
+    url: https://nossdav.org
+    tags: ["#NOSSDAV2026", "#NetworkedStreaming"]
+    deadlines:
+      - type: submission
+        label: Paper Submission
+        date: "2026-02-14"
+      - type: notification
+        label: Acceptance Notification
+        date: "2026-03-28"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2026-04-18"
+      - type: conference
+        label: Workshop Day
+        date: "2026-06-09"
+
+  - name: Mile High Video 2027
+    short: MHV 2027
+    url: https://www.milehighvideo.com
+    tags: ["#MHV2027", "#VideoTechnology"]
+    deadlines:
+      - type: submission
+        label: Paper Submission
+        date: "2026-09-15"
+      - type: conference
+        label: Conference Starts
+        date: "2027-02-08"
+
+  - name: Packet Video 2026
+    short: PV 2026
+    url: https://packetvideo.org
+    tags: ["#PacketVideo2026", "#VideoNetworking"]
+    deadlines:
+      - type: submission
+        label: Paper Submission
+        date: "2026-03-21"
+      - type: notification
+        label: Acceptance Notification
+        date: "2026-04-25"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2026-05-16"
+      - type: conference
+        label: Workshop Day
+        date: "2026-06-09"

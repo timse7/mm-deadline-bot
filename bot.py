@@ -210,7 +210,20 @@ def get_client() -> Client:
             "Set BSKY_HANDLE and BSKY_APP_PASSWORD environment variables."
         )
 
-    client = Client()
+    # Resolve the PDS for custom-domain handles (e.g. eurosky.social)
+    # by looking up the DID document before connecting.
+    from atproto import IdResolver
+    resolver = IdResolver()
+    did = resolver.handle.resolve(handle)
+    did_doc = resolver.did.resolve(did)
+    pds_url = next(
+        (s["serviceEndpoint"] for s in did_doc.get("service", [])
+         if s.get("id") == "#atproto_pds"),
+        "https://bsky.social",
+    )
+    log.info("Resolved PDS for %s: %s", handle, pds_url)
+
+    client = Client(base_url=pds_url)
     client.login(handle, password)
     log.info("Logged in as %s", handle)
     return client

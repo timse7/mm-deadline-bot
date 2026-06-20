@@ -164,7 +164,7 @@ def compose_post(dl: Deadline) -> str:
 
     lines = [
         f"{dl.emoji} {prefix}",
-        f"{dl.conference_short} — {dl.label}",
+        f"{dl.conference_short} — {dl.type_label}",
         f"🗓 {deadline_date_str}",
     ]
 

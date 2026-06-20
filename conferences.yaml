@@ -5,6 +5,51 @@
 # Update this file to add/remove conferences or adjust dates.
 
 conferences:
+  - name: IEEE ICME 2026
+    short: ICME 2026
+    url: https://2026.ieeeicme.org
+    tags: ["#ICME2026", "#MultimediaExpo"]
+    deadlines:
+      - type: conference
+        label: Conference Starts
+        date: "2026-07-05"
+
+  - name: IEEE ICIP 2026
+    short: ICIP 2026
+    url: https://2026.ieeeicip.org
+    tags: ["#ICIP2026", "#ImageProcessing"]
+    deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2026-02-04"
+      - type: notification
+        label: Acceptance Notification
+        date: "2026-04-29"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2026-05-13"
+      - type: conference
+        label: Conference Starts
+        date: "2026-09-13"
+
+  - name: ACM Multimedia 2026
+    short: ACMMM 2026
+    url: https://2026.acmmm.org
+    tags: ["#ACMMM2026", "#MultimediaResearch"]
+    deadlines:
+      - type: conference
+        label: Conference Starts
+        date: "2026-11-10"
+
+  - name: IBC 2026
+    short: IBC 2026
+    url: https://show.ibc.org
+    tags: ["#IBC2026", "#Broadcasting"]
+    deadlines:
+      - type: conference
+        label: Show Opens
+        date: "2026-09-11"
+
   - name: IEEE VCIP 2026
     short: VCIP 2026
     url: https://vcip-2026.org/
@@ -38,10 +83,70 @@ conferences:
         label: Conference Starts
         date: "2026-09-22"
 
+  - name: IEEE ISM 2026
+    short: ISM 2026
+    url: https://www.multimediacomputing.org/
+    tags: ["#ISM2026", "#MultimediaComputing"]
+    deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2026-09-01"
+      - type: notification
+        label: Acceptance Notification
+        date: "2026-10-01"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2026-11-01"
+      - type: conference
+        label: Conference Starts
+        date: "2026-12-07"
+
+  - name: ACM Multimedia Asia 2026
+    short: MMAsia 2026
+    url: https://mmasia2026.org
+    tags: ["#MMAsia2026", "#MultimediaAsia"]
+    deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2026-08-03"
+      - type: notification
+        label: Acceptance Notification
+        date: "2026-10-02"
+      - type: conference
+        label: Conference Starts
+        date: "2026-12-15"
+
+  - name: QoMEX 2026
+    short: QoMEX 2026
+    url: https://qomex2026.itec.aau.at/
+    tags: ["#QoMEX2026", "#QualityOfExperience"]
+    deadlines:
+      - type: conference
+        label: Conference Starts
+        date: "2026-06-30"
+
+  - name: MMM 2027
+    short: MMM 2027
+    url: https://mmm2027.net/
+    tags: ["#MMM2027", "#MultimediaModeling"]
+    deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2026-08-16"
+      - type: notification
+        label: Acceptance Notification
+        date: "2026-10-16"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2026-11-01"
+      - type: conference
+        label: Conference Starts
+        date: "2027-01-01"
+
   - name: ACM MMSys 2027
     short: MMSys 2027
     url: https://2027.acmmmsys.org/
-    tags: ["#MMSys"]
+    tags: ["#MMSys", "#MultimediaSystems"]
     deadlines:
       - type: registration
         label: Paper Registration

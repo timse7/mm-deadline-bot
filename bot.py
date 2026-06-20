@@ -198,7 +198,7 @@ def compose_daily_summary(deadlines: list[Deadline]) -> str:
         lines.append(f"{bar} {dl.conference_short} {dl.emoji} {day_str}")
 
     lines.append("")
-    lines.append("#MultimediaResearch #CFP #AcademicConferences")
+    lines.append("🧪 #MultimediaResearch #CFP #AcademicSky")
 
     post = "\n".join(lines)
     return post[:295]

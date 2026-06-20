@@ -72,6 +72,7 @@ class Deadline:
     deadline_type: str
     label: str
     date: date
+    round: Optional[int] = None
 
     @property
     def days_until(self) -> int:
@@ -83,7 +84,10 @@ class Deadline:
 
     @property
     def type_label(self) -> str:
-        return TYPE_LABEL.get(self.deadline_type, self.label)
+        base = TYPE_LABEL.get(self.deadline_type, self.label)
+        if self.round:
+            return f"{base} (Round {self.round})"
+        return base
 
 
 # ---------------------------------------------------------------------------
@@ -108,6 +112,7 @@ def load_deadlines(path: Path = CONFERENCES_FILE) -> list[Deadline]:
                 deadline_type=dl["type"],
                 label=dl["label"],
                 date=dl_date,
+                round=dl.get("round"),
             ))
     return deadlines
 
@@ -294,7 +299,7 @@ def main():
         for dl in today_deadlines:
             days = dl.days_until
             day_str = "TODAY" if days == 0 else f"in {days} days"
-            print(f"  {dl.emoji} [{dl.conference_short}] {dl.label} — {dl.date} ({day_str})")
+            print(f"  {dl.emoji} [{dl.conference_short}] {dl.type_label} — {dl.date} ({day_str})")
         return
 
     run(dry_run=args.dry_run, summary_only=args.summary_only, lookahead=args.lookahead)

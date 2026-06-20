@@ -28,12 +28,30 @@ conferences:
     url: https://2027.acmmmsys.org/
     tags: ["#MMSys"]
     deadlines:
+      - type: registration
+        label: Paper Registration
+        round: 1
+        date: "2026-09-10"
       - type: submission
         label: Full Paper Submission
+        round: 1
         date: "2026-09-17"
       - type: notification
         label: Acceptance Notification
+        round: 1
         date: "2026-10-24"
+      - type: registration
+        label: Paper Registration
+        round: 2
+        date: "2026-11-12"
+      - type: submission
+        label: Full Paper Submission
+        round: 2
+        date: "2026-11-19"
+      - type: notification
+        label: Acceptance Notification
+        round: 2
+        date: "2026-12-19"
       - type: camera_ready
         label: Camera-Ready Deadline
         date: "2027-02-19"

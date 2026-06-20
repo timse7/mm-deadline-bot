@@ -51,7 +51,7 @@ conferences:
       - type: notification
         label: Acceptance Notification
         round: 2
-        date: "2026-12-19"
+        date: "2026-12-22"
       - type: camera_ready
         label: Camera-Ready Deadline
         date: "2027-02-19"

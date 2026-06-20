@@ -37,6 +37,12 @@ conferences:
     url: https://2026.acmmm.org
     tags: ["#ACMMM2026", "#MultimediaResearch"]
     deadlines:
+      - type: notification
+        label: Acceptance Notification
+        date: "2026-07-09"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2026-08-06"
       - type: conference
         label: Conference Starts
         date: "2026-11-10"

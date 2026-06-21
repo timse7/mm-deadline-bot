@@ -5,6 +5,42 @@
 # Update this file to add/remove conferences or adjust dates.
 
 conferences:
+  - name: ACM ICMR 2026
+    short: ICMR 2026
+    url: https://icmr2026.org
+    tags: ["#ICMR2026", "#MultimediaRetrieval"]
+    deadlines:
+      - type: conference
+        label: Conference Starts
+        date: "2026-06-16"
+
+  - name: WoWMoM 2026
+    short: WoWMoM 2026
+    url: https://www.cs.unibo.it/wowmom2026/
+    tags: ["#WoWMoM2026", "#WirelessMultimedia"]
+    deadlines:
+      - type: conference
+        label: Conference Starts
+        date: "2026-06-16"
+
+  - name: EUSIPCO 2026
+    short: EUSIPCO 2026
+    url: https://eusipco2026.org
+    tags: ["#EUSIPCO2026", "#SignalProcessing"]
+    deadlines:
+      - type: conference
+        label: Conference Starts
+        date: "2026-08-31"
+
+  - name: IEEE CBMI 2026
+    short: CBMI 2026
+    url: https://cbmi2026.sciencesconf.org
+    tags: ["#CBMI2026", "#MultimediaIndexing"]
+    deadlines:
+      - type: conference
+        label: Conference Starts
+        date: "2026-10-01"
+
   - name: IEEE ICME 2026
     short: ICME 2026
     url: https://2026.ieeeicme.org

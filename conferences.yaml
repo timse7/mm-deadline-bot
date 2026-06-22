@@ -41,6 +41,24 @@ conferences:
         label: Conference Starts
         date: "2026-10-01"
 
+  - name: EUVIP 2026
+    short: EUVIP 2026
+    url: https://euvip2026.github.io/
+    tags: ["#EUVIP2026", "#VisualInformationProcessing"]
+    deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2026-06-15"
+      - type: notification
+        label: Acceptance Notification
+        date: "2026-07-18"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2026-08-05"
+      - type: conference
+        label: Conference Starts
+        date: "2026-09-28"
+
   - name: IEEE ICME 2026
     short: ICME 2026
     url: https://2026.ieeeicme.org

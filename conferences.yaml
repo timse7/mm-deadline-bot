@@ -41,7 +41,7 @@ conferences:
         label: Conference Starts
         date: "2026-10-01"
 
-  - name: EUVIP 2026
+  - name: 14th European Conference on Visual Information Processing
     short: EUVIP 2026
     url: https://euvip2026.github.io/
     tags: ["#EUVIP2026", "#VisualInformationProcessing"]

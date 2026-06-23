@@ -15,8 +15,9 @@ from pathlib import Path
 from dataclasses import dataclass, field
 from typing import Optional
 
+import re
 import yaml
-from atproto import Client
+from atproto import Client, models
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -237,6 +238,36 @@ def get_client() -> Client:
 
 
 # ---------------------------------------------------------------------------
+# Rich text facets (makes URLs and hashtags clickable on Bluesky)
+# ---------------------------------------------------------------------------
+
+def build_facets(text: str) -> list:
+    """Detect URLs and hashtags in text and return Bluesky facet objects."""
+    facets = []
+    encoded = text.encode("utf-8")
+
+    # URLs
+    for m in re.finditer(r"https?://[^\s\]>\"']+", text):
+        start = len(text[:m.start()].encode("utf-8"))
+        end = len(text[:m.end()].encode("utf-8"))
+        facets.append(models.AppBskyRichtextFacet.Main(
+            index=models.AppBskyRichtextFacet.ByteSlice(byte_start=start, byte_end=end),
+            features=[models.AppBskyRichtextFacet.Link(uri=m.group())],
+        ))
+
+    # Hashtags
+    for m in re.finditer(r"#([A-Za-z0-9_]+)", text):
+        start = len(text[:m.start()].encode("utf-8"))
+        end = len(text[:m.end()].encode("utf-8"))
+        facets.append(models.AppBskyRichtextFacet.Main(
+            index=models.AppBskyRichtextFacet.ByteSlice(byte_start=start, byte_end=end),
+            features=[models.AppBskyRichtextFacet.Tag(tag=m.group(1))],
+        ))
+
+    return facets
+
+
+# ---------------------------------------------------------------------------
 # Posting logic
 # ---------------------------------------------------------------------------
 
@@ -245,7 +276,8 @@ def post_text(client: Client, text: str, dry_run: bool = False) -> None:
     if dry_run:
         log.info("[dry-run] Skipping actual post.")
         return
-    client.send_post(text=text)
+    facets = build_facets(text)
+    client.send_post(text=text, facets=facets if facets else None)
     log.info("Posted successfully.")
 
 

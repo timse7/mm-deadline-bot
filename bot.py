@@ -143,6 +143,48 @@ def select_deadlines_for_today(
 # Post composition
 # ---------------------------------------------------------------------------
 
+ENCOURAGEMENT = {
+    "registration": [
+        "Get your title and abstract in!",
+        "First step done — now write that paper!",
+        "Secure your spot — register today!",
+    ],
+    "submission": [
+        "Good luck with your submission! 🍀",
+        "Last push — you've got this! 💪",
+        "Submit early, submit often… well, just once. Good luck!",
+        "May the reviews be ever in your favour! 🤞",
+        "Wishing everyone a smooth submission!",
+    ],
+    "rebuttal": [
+        "Make your case — good luck! 💬",
+        "Time to respond — best of luck!",
+        "Craft those rebuttals carefully. You've got this!",
+    ],
+    "notification": [
+        "Fingers crossed for good news! 🤞",
+        "Results incoming — good luck everyone!",
+        "Hope your inbox brings great news today! 📬",
+    ],
+    "camera_ready": [
+        "Almost there — final push! 🏁",
+        "Polish those PDFs — you're nearly done!",
+        "Final version time — make it shine! ✨",
+    ],
+    "conference": [
+        "See you there! 👋",
+        "Enjoy the conference! 🎉",
+        "Have a great event everyone!",
+        "Looking forward to great research and good discussions! 🎤",
+    ],
+}
+
+def closing_line(deadline_type: str) -> str:
+    import random
+    options = ENCOURAGEMENT.get(deadline_type, ["Good luck! 🍀"])
+    return random.choice(options)
+
+
 def urgency_prefix(days: int) -> str:
     if days == 0:
         return "🚨 TODAY"
@@ -174,6 +216,8 @@ def compose_post(dl: Deadline) -> str:
 
     if dl.tags:
         lines.append(" ".join(dl.tags[:3]))  # cap tags to keep post short
+
+    lines.append(closing_line(dl.deadline_type))
 
     post = "\n".join(lines)
 

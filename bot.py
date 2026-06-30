@@ -37,8 +37,14 @@ CONFERENCES_FILE = Path(__file__).parent / "conferences.yaml"
 # Only post about deadlines within this many days away
 LOOKAHEAD_DAYS = 60
 
-# Milestones (days before deadline) that always get a post
-MILESTONE_DAYS = {90, 60, 30, 14, 7, 3, 2, 1}
+# Milestone days per deadline type
+MILESTONE_DAYS_FULL = {90, 60, 30, 14, 7, 3, 2, 1}   # registration, submission, conference
+MILESTONE_DAYS_SHORT = {7, 3, 2, 1}                    # rebuttal, notification, camera_ready
+
+def milestone_days_for(deadline_type: str) -> set:
+    if deadline_type in {"rebuttal", "notification", "camera_ready"}:
+        return MILESTONE_DAYS_SHORT
+    return MILESTONE_DAYS_FULL
 
 # Deadline type emojis
 TYPE_EMOJI = {
@@ -132,7 +138,7 @@ def select_deadlines_for_today(
         days = dl.days_until
         if days < 0:
             continue  # already passed
-        if days in MILESTONE_DAYS or days <= lookahead:
+        if days in milestone_days_for(dl.deadline_type) or days <= lookahead:
             selected.append(dl)
 
     selected.sort(key=lambda d: d.days_until)
@@ -341,7 +347,7 @@ def run(dry_run: bool = False, summary_only: bool = False, lookahead: int = LOOK
     else:
         # Post individual countdowns for milestone deadlines and summary for the rest
         milestone_deadlines = [
-            dl for dl in today_deadlines if dl.days_until in MILESTONE_DAYS
+            dl for dl in today_deadlines if dl.days_until in milestone_days_for(dl.deadline_type)
         ]
         for dl in milestone_deadlines:
             text = compose_post(dl)

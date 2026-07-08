@@ -185,6 +185,15 @@ conferences:
         label: Conference Starts
         date: "2026-06-30"
 
+  - name: QoMEX 2027
+    short: QoMEX 2027
+    url: https://qomex2027.itec.aau.at/
+    tags: ["#QoMEX2027", "#QualityOfExperience"]
+    deadlines:
+      - type: conference
+        label: Conference Starts
+        date: "2027-07-06"
+
   - name: MMM 2027
     short: MMM 2027
     url: https://mmm2027.net/

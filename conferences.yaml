@@ -19,6 +19,9 @@ conferences:
       - type: camera_ready
         label: Camera-Ready Deadline
         date: "2026-09-21"
+      - type: conference
+        label: Conference Starts
+        date: "2026-12-07"
 
   - name: ACM ICMR 2026
     short: ICMR 2026

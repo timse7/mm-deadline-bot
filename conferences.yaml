@@ -5,6 +5,21 @@
 # Update this file to add/remove conferences or adjust dates.
 
 conferences:
+  - name: EMS 2026
+    short: EMS 2026
+    url: https://athena.itec.aau.at/ems-2026/
+    tags: ["#EMS2026", "#EmergingMultimedia"]
+    deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2026-07-24"
+      - type: notification
+        label: Acceptance Notification
+        date: "2026-08-26"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2026-09-21"
+
   - name: ACM ICMR 2026
     short: ICMR 2026
     url: https://icmr2026.org

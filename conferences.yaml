@@ -78,6 +78,16 @@ conferences:
         label: Conference Starts
         date: "2026-09-28"
 
+  - name: IEEE ISMAR 2026
+    short: ISMAR 2026
+    url: https://www.ieeeismar.net/2026/
+    tags: ["#ISMAR2026", "#MixedReality"]
+    bsky: ieeeismar2026.bsky.social
+    deadlines:
+      - type: conference
+        label: Conference Starts
+        date: "2026-10-05"
+
   - name: IEEE ICME 2026
     short: ICME 2026
     url: https://2026.ieeeicme.org

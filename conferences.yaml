@@ -63,6 +63,7 @@ conferences:
     short: EUVIP 2026
     url: https://euvip2026.github.io/
     tags: ["#EUVIP2026", "#VisualInformationProcessing"]
+    bsky: euvip2026.bsky.social
     deadlines:
       - type: submission
         label: Full Paper Submission
@@ -234,6 +235,7 @@ conferences:
     short: MMSys 2027
     url: https://2027.acmmmsys.org/
     tags: ["#MMSys", "#MultimediaSystems"]
+    bsky: mmsys.bsky.social
     deadlines:
       - type: registration
         label: Paper Registration

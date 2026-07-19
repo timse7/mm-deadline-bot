@@ -80,6 +80,7 @@ class Deadline:
     label: str
     date: date
     round: Optional[int] = None
+    bsky_handle: Optional[str] = None
 
     @property
     def days_until(self) -> int:
@@ -120,6 +121,7 @@ def load_deadlines(path: Path = CONFERENCES_FILE) -> list[Deadline]:
                 label=dl["label"],
                 date=dl_date,
                 round=dl.get("round"),
+                bsky_handle=conf.get("bsky"),
             ))
     return deadlines
 
@@ -219,6 +221,9 @@ def compose_post(dl: Deadline) -> str:
 
     if dl.conference_url:
         lines.append(f"🔗 {dl.conference_url}")
+
+    if dl.bsky_handle:
+        lines.append(f"🦋 @{dl.bsky_handle}")
 
     if dl.tags:
         lines.append(" ".join(dl.tags[:3]))  # cap tags to keep post short

@@ -7,17 +7,16 @@ Configure credentials via environment variables or a .env file.
 """
 
 import os
-import sys
 import logging
 import random
-from datetime import date, datetime, timedelta
+import re
+from datetime import date
 from pathlib import Path
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Optional
 
-import re
 import yaml
-from atproto import Client, models
+from atproto import Client, IdResolver, models
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -39,12 +38,21 @@ LOOKAHEAD_DAYS = 60
 
 # Milestone days per deadline type
 MILESTONE_DAYS_FULL = {90, 60, 30, 14, 7, 3, 2, 1}   # registration, submission, conference
-MILESTONE_DAYS_SHORT = {7, 3, 2, 1}                    # rebuttal, notification, camera_ready
+MILESTONE_DAYS_SHORT = {7, 3, 2, 1}                   # rebuttal, notification, camera_ready
+SHORT_MILESTONE_TYPES = {"rebuttal", "notification", "camera_ready"}
+
+# Bluesky caps posts at 300 grapheme clusters; stay just under to be safe.
+POST_SAFE_LIMIT = 295
+
+# Maximum number of items listed in the daily digest.
+DIGEST_MAX_ITEMS = 8
+
 
 def milestone_days_for(deadline_type: str) -> set:
-    if deadline_type in {"rebuttal", "notification", "camera_ready"}:
+    if deadline_type in SHORT_MILESTONE_TYPES:
         return MILESTONE_DAYS_SHORT
     return MILESTONE_DAYS_FULL
+
 
 # Deadline type emojis
 TYPE_EMOJI = {
@@ -187,8 +195,8 @@ ENCOURAGEMENT = {
     ],
 }
 
+
 def closing_line(deadline_type: str) -> str:
-    import random
     options = ENCOURAGEMENT.get(deadline_type, ["Good luck! 🍀"])
     return random.choice(options)
 
@@ -208,56 +216,54 @@ def urgency_prefix(days: int) -> str:
 
 
 def compose_post(dl: Deadline) -> str:
-    days = dl.days_until
-    prefix = urgency_prefix(days)
+    prefix = urgency_prefix(dl.days_until)
+    date_str = dl.date.strftime("%b %d, %Y")
+    closing = closing_line(dl.deadline_type)
+    tags = " ".join(dl.tags[:3]) if dl.tags else None
 
-    deadline_date_str = dl.date.strftime("%b %d, %Y")
+    def assemble(with_url: bool, with_tags: bool) -> str:
+        lines = [
+            f"{dl.emoji} {prefix}",
+            f"{dl.conference_short} — {dl.type_label}",
+            f"🗓 {date_str}",
+        ]
+        if dl.conference_url and with_url:
+            lines.append(f"🔗 {dl.conference_url}")
+        if dl.bsky_handle:
+            lines.append(f"🦋 @{dl.bsky_handle}")
+        if tags and with_tags:
+            lines.append(tags)
+        lines.append(closing)
+        return "\n".join(lines)
 
-    lines = [
-        f"{dl.emoji} {prefix}",
-        f"{dl.conference_short} — {dl.type_label}",
-        f"🗓 {deadline_date_str}",
-    ]
-
-    if dl.conference_url:
-        lines.append(f"🔗 {dl.conference_url}")
-
-    if dl.bsky_handle:
-        lines.append(f"🦋 @{dl.bsky_handle}")
-
-    if dl.tags:
-        lines.append(" ".join(dl.tags[:3]))  # cap tags to keep post short
-
-    lines.append(closing_line(dl.deadline_type))
-
-    post = "\n".join(lines)
-
-    # Bluesky limit is 300 grapheme clusters
-    if len(post) > 295:
-        lines.pop(-2)  # drop URL if too long
-        post = "\n".join(lines)
-
-    return post
+    # If the full post is too long, drop optional lines (tags first, then the
+    # URL) until it fits. The header, conference, date, and closing always stay.
+    for with_url, with_tags in ((True, True), (True, False), (False, False)):
+        post = assemble(with_url, with_tags)
+        if len(post) <= POST_SAFE_LIMIT:
+            return post
+    return post  # best effort — shortest form, even if still over the limit
 
 
 def compose_daily_summary(deadlines: list[Deadline]) -> str:
     """Compose a single summary post listing upcoming deadlines."""
-    today = date.today()
-    today_str = today.strftime("%B %d, %Y")
+    header = f"📋 Multimedia Deadline Digest — {date.today().strftime('%B %d, %Y')}"
+    footer = "#MultimediaResearch #CFP #AcademicSky 🧪"
 
-    lines = [f"📋 Multimedia Deadline Digest — {today_str}", ""]
-
-    for dl in deadlines[:8]:  # cap at 8 items
+    body: list[str] = []
+    for dl in deadlines[:DIGEST_MAX_ITEMS]:
         days = dl.days_until
         bar = "🔴" if days <= 7 else ("🟡" if days <= 30 else "🟢")
-        day_str = "today" if days == 0 else (f"tomorrow" if days == 1 else f"{days}d")
-        lines.append(f"{bar} {dl.conference_short} {dl.emoji} {day_str}")
+        day_str = "today" if days == 0 else ("tomorrow" if days == 1 else f"{days}d")
+        line = f"{bar} {dl.conference_short} {dl.emoji} {day_str}"
 
-    lines.append("")
-    lines.append("#MultimediaResearch #CFP #AcademicSky 🧪")
+        # Only add the line if the post still fits with the footer attached.
+        candidate = "\n".join([header, "", *body, line, "", footer])
+        if len(candidate) > POST_SAFE_LIMIT:
+            break
+        body.append(line)
 
-    post = "\n".join(lines)
-    return post[:295]
+    return "\n".join([header, "", *body, "", footer])
 
 
 # ---------------------------------------------------------------------------
@@ -273,9 +279,8 @@ def get_client() -> Client:
             "Set BSKY_HANDLE and BSKY_APP_PASSWORD environment variables."
         )
 
-    # Resolve the PDS for custom-domain handles (e.g. eurosky.social)
-    # by looking up the DID document before connecting.
-    from atproto import IdResolver
+    # Resolve the PDS for custom-domain handles (e.g. eurosky.social) by
+    # looking up the DID document before connecting.
     resolver = IdResolver()
     did = resolver.handle.resolve(handle)
     did_doc = resolver.did.resolve(did)
@@ -298,24 +303,26 @@ def get_client() -> Client:
 
 def build_facets(text: str) -> list:
     """Detect URLs and hashtags in text and return Bluesky facet objects."""
-    facets = []
-    encoded = text.encode("utf-8")
+    # Precompute char index -> UTF-8 byte offset once (facets index by byte).
+    byte_offsets = [0]
+    for ch in text:
+        byte_offsets.append(byte_offsets[-1] + len(ch.encode("utf-8")))
 
-    # URLs
+    facets = []
+
     for m in re.finditer(r"https?://[^\s\]>\"']+", text):
-        start = len(text[:m.start()].encode("utf-8"))
-        end = len(text[:m.end()].encode("utf-8"))
         facets.append(models.AppBskyRichtextFacet.Main(
-            index=models.AppBskyRichtextFacet.ByteSlice(byte_start=start, byte_end=end),
+            index=models.AppBskyRichtextFacet.ByteSlice(
+                byte_start=byte_offsets[m.start()], byte_end=byte_offsets[m.end()]
+            ),
             features=[models.AppBskyRichtextFacet.Link(uri=m.group())],
         ))
 
-    # Hashtags
     for m in re.finditer(r"#([A-Za-z0-9_]+)", text):
-        start = len(text[:m.start()].encode("utf-8"))
-        end = len(text[:m.end()].encode("utf-8"))
         facets.append(models.AppBskyRichtextFacet.Main(
-            index=models.AppBskyRichtextFacet.ByteSlice(byte_start=start, byte_end=end),
+            index=models.AppBskyRichtextFacet.ByteSlice(
+                byte_start=byte_offsets[m.start()], byte_end=byte_offsets[m.end()]
+            ),
             features=[models.AppBskyRichtextFacet.Tag(tag=m.group(1))],
         ))
 
@@ -346,22 +353,17 @@ def run(dry_run: bool = False, summary_only: bool = False, lookahead: int = LOOK
 
     client = None if dry_run else get_client()
 
-    if summary_only:
-        text = compose_daily_summary(today_deadlines)
-        post_text(client, text, dry_run)
-    else:
-        # Post individual countdowns for milestone deadlines and summary for the rest
+    if not summary_only:
+        # Individual countdown posts for deadlines hitting a milestone today.
         milestone_deadlines = [
-            dl for dl in today_deadlines if dl.days_until in milestone_days_for(dl.deadline_type)
+            dl for dl in today_deadlines
+            if dl.days_until in milestone_days_for(dl.deadline_type)
         ]
         for dl in milestone_deadlines:
-            text = compose_post(dl)
-            post_text(client, text, dry_run)
+            post_text(client, compose_post(dl), dry_run)
 
-        # Always end with a digest summary
-        if today_deadlines:
-            text = compose_daily_summary(today_deadlines)
-            post_text(client, text, dry_run)
+    # Always end with a digest summary.
+    post_text(client, compose_daily_summary(today_deadlines), dry_run)
 
 
 # ---------------------------------------------------------------------------
@@ -382,7 +384,7 @@ def main():
     if args.list:
         deadlines = load_deadlines()
         today_deadlines = select_deadlines_for_today(deadlines, args.lookahead)
-        print(f"Upcoming deadlines (next {LOOKAHEAD_DAYS} days + milestones):\n")
+        print(f"Upcoming deadlines (next {args.lookahead} days + milestones):\n")
         for dl in today_deadlines:
             days = dl.days_until
             day_str = "TODAY" if days == 0 else f"in {days} days"

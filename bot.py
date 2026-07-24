@@ -88,6 +88,7 @@ class Deadline:
     label: str
     date: date
     round: Optional[int] = None
+    stage: Optional[str] = None
     bsky_handle: Optional[str] = None
 
     @property
@@ -103,6 +104,8 @@ class Deadline:
         base = TYPE_LABEL.get(self.deadline_type, self.label)
         if self.round:
             return f"{base} (Round {self.round})"
+        if self.stage:
+            return f"{base} ({self.stage})"
         return base
 
 
@@ -129,6 +132,7 @@ def load_deadlines(path: Path = CONFERENCES_FILE) -> list[Deadline]:
                 label=dl["label"],
                 date=dl_date,
                 round=dl.get("round"),
+                stage=dl.get("stage"),
                 bsky_handle=conf.get("bsky"),
             ))
     return deadlines

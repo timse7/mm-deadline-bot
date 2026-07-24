@@ -2,9 +2,41 @@
 # Each conference can have multiple deadlines with types:
 #   registration, submission, rebuttal, notification, camera_ready, conference
 #
+# Optional per-deadline fields:
+#   round: N       -> appends "(Round N)"  (e.g. MMSys two-round submissions)
+#   stage: "Text"  -> appends "(Text)"     (e.g. MHV "Abstract" vs "Paper" stages)
+#
 # Update this file to add/remove conferences or adjust dates.
 
 conferences:
+  - name: ACM Mile-High Video 2027
+    short: MHV 2027
+    url: https://www.mile-high.video/
+    tags: ["#MHV2027", "#VideoTechnology"]
+    deadlines:
+      - type: submission
+        label: Abstract Submission
+        stage: Abstract
+        date: "2026-10-09"
+      - type: notification
+        label: Acceptance Notification
+        stage: Abstract
+        date: "2026-11-20"
+      - type: submission
+        label: Full Paper Submission
+        stage: Paper
+        date: "2026-12-11"
+      - type: notification
+        label: Acceptance Notification
+        stage: Paper
+        date: "2027-01-15"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2027-02-05"
+      - type: conference
+        label: Conference Starts
+        date: "2027-02-23"
+
   - name: EMS 2026
     short: EMS 2026
     url: https://athena.itec.aau.at/ems-2026/

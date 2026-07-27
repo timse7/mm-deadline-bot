@@ -80,24 +80,30 @@ Then: `launchctl load ~/Library/LaunchAgents/com.mmdeadlinebot.plist`
 ```yaml
 name: Post deadline countdown
 on:
-  schedule:
-    - cron: '0 9 * * *'   # 09:00 UTC daily
-  workflow_dispatch:
+  workflow_dispatch:      # triggered externally or manually
+  # schedule:             # GitHub's cron is unreliable — see note below
+  #   - cron: '0 9 * * *'
 
 jobs:
   post:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
+          cache: pip
       - run: pip install -r requirements.txt
-      - run: python bot.py --summary-only
+      - run: python bot.py
         env:
           BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
           BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
 ```
+
+> **Note:** GitHub Actions' `schedule:` cron is known to be unreliable — runs are
+> often delayed or skipped entirely. For dependable daily posting, trigger the
+> workflow externally via [cron-job.org](https://cron-job.org) (or any scheduler)
+> calling the GitHub API `workflow_dispatch` endpoint at a fixed time each day.
 
 ## Adding Conferences
 
@@ -108,17 +114,28 @@ Edit [`conferences.yaml`](conferences.yaml). Each conference entry looks like:
   short: ACMMM 2027
   url: https://acmmm2027.org
   tags: ["#ACMMM2027", "#MultimediaResearch"]
+  bsky: acmmm.bsky.social         # optional — mentioned in individual posts
   deadlines:
-    - type: submission      # submission | rebuttal | notification | camera_ready | conference
-      label: Full Paper Submission
+    - type: submission            # registration | submission | rebuttal |
+      label: Full Paper Submission #   notification | camera_ready | conference
       date: "2027-04-10"
     - type: conference
       label: Conference Starts
       date: "2027-10-20"
 ```
 
+Optional per-deadline qualifiers to distinguish otherwise-identical deadlines:
+
+- `round: N` → appends `(Round N)` — for multiple submission rounds (e.g. MMSys).
+- `stage: "Text"` → appends `(Text)` — for staged submissions (e.g. MHV `Abstract` then `Paper`).
+
 ## Post Behavior
 
-- **Milestone posts**: Individual countdown posts are sent when a deadline is exactly 90, 60, 30, 14, 7, 3, 2, or 1 day(s) away.
-- **Daily digest**: A summary listing all deadlines within the lookahead window (default 60 days) is always posted.
+- **Milestone posts**: Individual countdown posts are sent on specific days before a deadline. The set depends on the deadline type:
+  - `registration`, `submission`, `conference` — 90, 60, 30, 14, 7, 3, 2, 1 days before
+  - `rebuttal`, `notification`, `camera_ready` — 7, 3, 2, 1 days before only
+  - Each includes a randomised encouraging closing line, and mentions the conference's Bluesky handle if set.
+- **Daily digest**: A colour-coded summary of all deadlines within the lookahead window (default 60 days) is always posted.
+- URLs and hashtags are clickable (Bluesky rich text facets).
+- Posts that would exceed Bluesky's 300-character limit are trimmed gracefully (individual posts drop tags then URL; the digest limits how many items it lists).
 - Deadlines in the past are silently skipped.

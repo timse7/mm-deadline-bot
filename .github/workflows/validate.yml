@@ -1,0 +1,40 @@
+name: Validate conferences
+
+# Catches YAML syntax errors, malformed dates, and missing keys before they
+# reach a live post. Runs on every push/PR that touches the data or the bot.
+on:
+  push:
+    paths:
+      - 'conferences.yaml'
+      - 'bot.py'
+      - 'requirements.txt'
+      - '.github/workflows/validate.yml'
+  pull_request:
+    paths:
+      - 'conferences.yaml'
+      - 'bot.py'
+      - 'requirements.txt'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check schema and dates
+        run: python validate_conferences.py
+
+      # Exercises the real load + select + compose path, so a crash in post
+      # composition is caught here rather than at 09:00 UTC tomorrow.
+      - name: Dry-run the bot
+        run: python bot.py --dry-run --lookahead 365

@@ -217,7 +217,7 @@ conferences:
         date: "2026-10-01"
       - type: camera_ready
         label: Camera-Ready Deadline
-        date: "2026-11-01"
+        date: "2026-11-11"
       - type: conference
         label: Conference Starts
         date: "2026-12-07"

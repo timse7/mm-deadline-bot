@@ -181,7 +181,7 @@ conferences:
         date: "2026-07-03"
       - type: notification
         label: Acceptance Notification
-        date: "2026-08-28"
+        date: "2026-09-14"   # extended from 2026-08-28
       - type: camera_ready
         label: Camera-Ready Deadline
         date: "2026-09-25"
@@ -262,16 +262,16 @@ conferences:
     deadlines:
       - type: submission
         label: Full Paper Submission
-        date: "2026-08-16"
+        date: "2026-08-30"   # extended from 2026-08-16
       - type: notification
         label: Acceptance Notification
         date: "2026-10-16"
       - type: camera_ready
         label: Camera-Ready Deadline
-        date: "2026-11-01"
+        date: "2026-10-28"
       - type: conference
         label: Conference Starts
-        date: "2027-01-01"
+        date: "2027-01-05"
 
   - name: ACM MMSys 2027
     short: MMSys 2027

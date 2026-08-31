@@ -89,7 +89,7 @@ conferences:
     deadlines:
       - type: conference
         label: Conference Starts
-        date: "2026-10-01"
+        date: "2026-10-21"
 
   - name: 14th European Conference on Visual Information Processing
     short: EUVIP 2026

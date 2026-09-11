@@ -37,6 +37,24 @@ conferences:
         label: Conference Starts
         date: "2027-02-23"
 
+  - name: IEEE ICC 2027 — Communication Software and Multimedia Symposium
+    short: ICC CSM 2027
+    url: https://icc2027.ieee-icc.org/
+    tags: ["#ICC2027", "#MultimediaCommunications"]
+    deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2026-10-02"
+      - type: notification
+        label: Acceptance Notification
+        date: "2027-01-15"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2027-02-19"
+      - type: conference
+        label: Conference Starts
+        date: "2027-05-30"
+
   - name: EMS 2026
     short: EMS 2026
     url: https://athena.itec.aau.at/ems-2026/

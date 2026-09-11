@@ -55,6 +55,24 @@ conferences:
         label: Conference Starts
         date: "2027-05-30"
 
+  - name: IEEE GLOBECOM 2026 — Communication Software and Multimedia Symposium
+    short: GLOBECOM CSM 2026
+    url: https://globecom2026.ieee-globecom.org/
+    tags: ["#GLOBECOM2026", "#MultimediaCommunications"]
+    deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2026-05-03"
+      - type: notification
+        label: Acceptance Notification
+        date: "2026-08-01"
+      - type: camera_ready
+        label: Final Paper Upload & Registration
+        date: "2026-09-08"
+      - type: conference
+        label: Conference Starts
+        date: "2026-12-07"
+
   - name: EMS 2026
     short: EMS 2026
     url: https://athena.itec.aau.at/ems-2026/

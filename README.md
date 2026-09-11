@@ -15,6 +15,7 @@ Live at **[@mmcountdown.eurosky.social](https://bsky.app/profile/mmcountdown.eur
 | EMS | Emerging Multimedia Systems (workshop) |
 | EUSIPCO | European Signal Processing Conference |
 | EUVIP | European Conference on Visual Information Processing |
+| GLOBECOM CSM | IEEE Global Communications Conference — Communication Software and Multimedia Symposium |
 | IBC | International Broadcasting Convention |
 | ICC CSM | IEEE International Conference on Communications — Communication Software and Multimedia Symposium |
 | ICIP | IEEE International Conference on Image Processing |

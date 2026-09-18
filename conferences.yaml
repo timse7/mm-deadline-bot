@@ -220,7 +220,7 @@ conferences:
         date: "2026-09-14"   # extended from 2026-08-28
       - type: camera_ready
         label: Camera-Ready Deadline
-        date: "2026-09-25"
+        date: "2026-10-31"   # extended from 2026-09-25
       - type: conference
         label: Conference Starts
         date: "2026-12-13"

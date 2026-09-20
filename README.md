@@ -12,6 +12,7 @@ Live at **[@mmcountdown.eurosky.social](https://bsky.app/profile/mmcountdown.eur
 |---|---|
 | ACMMM | ACM Multimedia |
 | CBMI | IEEE International Conference on Content-Based Multimedia Indexing |
+| DCC | Data Compression Conference |
 | EMS | Emerging Multimedia Systems (workshop) |
 | EUSIPCO | European Signal Processing Conference |
 | EUVIP | European Conference on Visual Information Processing |

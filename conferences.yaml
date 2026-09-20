@@ -55,6 +55,24 @@ conferences:
         label: Conference Starts
         date: "2027-05-30"
 
+  - name: Data Compression Conference 2027
+    short: DCC 2027
+    url: https://datacompressionconference.org/
+    tags: ["#DCC2027", "#DataCompression"]
+    deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2026-10-02"
+      - type: notification
+        label: Acceptance Notification
+        date: "2026-11-22"
+      - type: camera_ready
+        label: Final Paper Submission & Author Registration
+        date: "2026-12-09"
+      - type: conference
+        label: Conference Starts
+        date: "2027-03-23"
+
   - name: IEEE GLOBECOM 2026 — Communication Software and Multimedia Symposium
     short: GLOBECOM CSM 2026
     url: https://globecom2026.ieee-globecom.org/

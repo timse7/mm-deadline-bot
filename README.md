@@ -22,6 +22,7 @@ Live at **[@mmcountdown.eurosky.social](https://bsky.app/profile/mmcountdown.eur
 | ICIP | IEEE International Conference on Image Processing |
 | ICME | IEEE International Conference on Multimedia & Expo |
 | ICMR | ACM International Conference on Multimedia Retrieval |
+| IEEE VR | IEEE Conference on Virtual Reality and 3D User Interfaces |
 | ISM | IEEE International Symposium on Multimedia |
 | ISMAR | IEEE International Symposium on Mixed and Augmented Reality |
 | MHV | ACM Mile-High Video |

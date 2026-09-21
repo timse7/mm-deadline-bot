@@ -213,6 +213,24 @@ conferences:
         label: Conference Starts
         date: "2026-07-05"
 
+  - name: IEEE ICASSP 2027
+    short: ICASSP 2027
+    url: https://2027.ieeeicassp.org/
+    tags: ["#ICASSP2027", "#SignalProcessing"]
+    deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2026-09-23"
+      - type: notification
+        label: Acceptance Notification
+        date: "2027-01-13"
+      - type: camera_ready
+        label: Final Paper Deadline
+        date: "2027-01-27"
+      - type: conference
+        label: Conference Starts
+        date: "2027-05-16"
+
   - name: IEEE ICIP 2026
     short: ICIP 2026
     url: https://2026.ieeeicip.org

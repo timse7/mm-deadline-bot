@@ -18,6 +18,7 @@ Live at **[@mmcountdown.eurosky.social](https://bsky.app/profile/mmcountdown.eur
 | EUVIP | European Conference on Visual Information Processing |
 | GLOBECOM CSM | IEEE Global Communications Conference — Communication Software and Multimedia Symposium |
 | IBC | International Broadcasting Convention |
+| ICASSP | IEEE International Conference on Acoustics, Speech and Signal Processing |
 | ICC CSM | IEEE International Conference on Communications — Communication Software and Multimedia Symposium |
 | ICIP | IEEE International Conference on Image Processing |
 | ICME | IEEE International Conference on Multimedia & Expo |

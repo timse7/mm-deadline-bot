@@ -6,11 +6,20 @@
 #   round: N       -> appends "(Round N)"  (e.g. MMSys two-round submissions)
 #   stage: "Text"  -> appends "(Text)"     (e.g. MHV "Abstract" vs "Paper" stages)
 #
-# Update this file to add/remove conferences or adjust dates.
+# Optional per-conference fields:
+#   full_name      -> name shown in the README table (generated, see below)
+#   bsky           -> conference handle, mentioned in individual posts
+#   verified       -> "YYYY-MM-DD" when the dates were last checked at the source
+#
+# After editing, run:
+#   python validate_conferences.py     # schema and date checks
+#   python bot.py --readme-table       # regenerate the README table
+#   python bot.py --todo               # what still needs attention
 
 conferences:
   - name: ACM Mile-High Video 2027
     short: MHV 2027
+    full_name: ACM Mile-High Video
     url: https://www.mile-high.video/
     tags: ["#MHV2027", "#VideoTechnology"]
     deadlines:
@@ -39,6 +48,7 @@ conferences:
 
   - name: IEEE ICC 2027 — Communication Software and Multimedia Symposium
     short: ICC CSM 2027
+    full_name: IEEE International Conference on Communications — Communication Software and Multimedia Symposium
     url: https://icc2027.ieee-icc.org/
     tags: ["#ICC2027", "#MultimediaCommunications"]
     deadlines:
@@ -57,6 +67,7 @@ conferences:
 
   - name: Data Compression Conference 2027
     short: DCC 2027
+    full_name: Data Compression Conference
     url: https://datacompressionconference.org/
     tags: ["#DCC2027", "#DataCompression"]
     deadlines:
@@ -75,6 +86,7 @@ conferences:
 
   - name: IEEE GLOBECOM 2026 — Communication Software and Multimedia Symposium
     short: GLOBECOM CSM 2026
+    full_name: IEEE Global Communications Conference — Communication Software and Multimedia Symposium
     url: https://globecom2026.ieee-globecom.org/
     tags: ["#GLOBECOM2026", "#MultimediaCommunications"]
     deadlines:
@@ -95,6 +107,7 @@ conferences:
   # known. Main Track CFP abstract registration is listed as TBA.
   - name: ACM SIGCOMM 2027
     short: SIGCOMM 2027
+    full_name: ACM Conference of the Special Interest Group on Data Communication
     url: https://conferences.sigcomm.org/sigcomm/2027/
     tags: ["#SIGCOMM2027", "#Networking"]
     deadlines:
@@ -104,6 +117,7 @@ conferences:
 
   - name: EMS 2026
     short: EMS 2026
+    full_name: Emerging Multimedia Systems (workshop)
     url: https://athena.itec.aau.at/ems-2026/
     tags: ["#EMS2026", "#EmergingMultimedia"]
     deadlines:
@@ -122,6 +136,7 @@ conferences:
 
   - name: ACM ICMR 2026
     short: ICMR 2026
+    full_name: ACM International Conference on Multimedia Retrieval
     url: https://icmr2026.org
     tags: ["#ICMR2026", "#MultimediaRetrieval"]
     deadlines:
@@ -131,6 +146,7 @@ conferences:
 
   - name: WoWMoM 2026
     short: WoWMoM 2026
+    full_name: IEEE International Symposium on a World of Wireless, Mobile and Multimedia Networks
     url: https://www.cs.unibo.it/wowmom2026/
     tags: ["#WoWMoM2026", "#WirelessMultimedia"]
     deadlines:
@@ -140,6 +156,7 @@ conferences:
 
   - name: EUSIPCO 2026
     short: EUSIPCO 2026
+    full_name: European Signal Processing Conference
     url: https://eusipco2026.org
     tags: ["#EUSIPCO2026", "#SignalProcessing"]
     deadlines:
@@ -149,6 +166,7 @@ conferences:
 
   - name: IEEE CBMI 2026
     short: CBMI 2026
+    full_name: IEEE International Conference on Content-Based Multimedia Indexing
     url: https://cbmi2026.sciencesconf.org
     tags: ["#CBMI2026", "#MultimediaIndexing"]
     deadlines:
@@ -158,6 +176,7 @@ conferences:
 
   - name: 14th European Conference on Visual Information Processing
     short: EUVIP 2026
+    full_name: European Conference on Visual Information Processing
     url: https://euvip2026.github.io/
     tags: ["#EUVIP2026", "#VisualInformationProcessing"]
     bsky: euvip2026.bsky.social
@@ -177,6 +196,7 @@ conferences:
 
   - name: IEEE ISMAR 2026
     short: ISMAR 2026
+    full_name: IEEE International Symposium on Mixed and Augmented Reality
     url: https://www.ieeeismar.net/2026/
     tags: ["#ISMAR2026", "#MixedReality"]
     bsky: ieeeismar2026.bsky.social
@@ -187,6 +207,7 @@ conferences:
 
   - name: IEEE VR 2027
     short: IEEE VR 2027
+    full_name: IEEE Conference on Virtual Reality and 3D User Interfaces
     url: https://ieeevr.org/2027/
     tags: ["#IEEEVR2027", "#VirtualReality"]
     deadlines:
@@ -217,6 +238,7 @@ conferences:
 
   - name: IEEE ICME 2026
     short: ICME 2026
+    full_name: IEEE International Conference on Multimedia & Expo
     url: https://2026.ieeeicme.org
     tags: ["#ICME2026", "#MultimediaExpo"]
     deadlines:
@@ -226,6 +248,7 @@ conferences:
 
   - name: IEEE ICASSP 2027
     short: ICASSP 2027
+    full_name: IEEE International Conference on Acoustics, Speech and Signal Processing
     url: https://2027.ieeeicassp.org/
     tags: ["#ICASSP2027", "#SignalProcessing"]
     deadlines:
@@ -244,6 +267,7 @@ conferences:
 
   - name: IEEE ICIP 2026
     short: ICIP 2026
+    full_name: IEEE International Conference on Image Processing
     url: https://2026.ieeeicip.org
     tags: ["#ICIP2026", "#ImageProcessing"]
     deadlines:
@@ -262,6 +286,7 @@ conferences:
 
   - name: ACM Multimedia 2026
     short: ACMMM 2026
+    full_name: ACM Multimedia
     url: https://2026.acmmm.org
     tags: ["#ACMMM2026", "#MultimediaResearch"]
     deadlines:
@@ -277,6 +302,7 @@ conferences:
 
   - name: IBC 2026
     short: IBC 2026
+    full_name: International Broadcasting Convention
     url: https://show.ibc.org
     tags: ["#IBC2026", "#Broadcasting"]
     deadlines:
@@ -286,6 +312,7 @@ conferences:
 
   - name: NAB Broadcast Engineering and IT Conference 2027
     short: NAB BEIT 2027
+    full_name: NAB Broadcast Engineering and IT Conference
     url: https://www.nab.org/documents/newsRoom/pressRelease.asp?id=7546
     tags: ["#NABShow2027", "#BroadcastEngineering"]
     deadlines:
@@ -301,6 +328,7 @@ conferences:
 
   - name: IEEE VCIP 2026
     short: VCIP 2026
+    full_name: IEEE International Conference on Visual Communications and Image Processing
     url: https://vcip-2026.org/
     tags: ["#VCIP2026"]
     deadlines:
@@ -319,6 +347,7 @@ conferences:
 
   - name: IEEE MMSP 2026
     short: MMSP 2026
+    full_name: IEEE International Workshop on Multimedia Signal Processing
     url: https://attend.ieee.org/mmsp-2026/
     tags: ["#MMSP2026", "#MultimediaSignalProcessing"]
     deadlines:
@@ -334,6 +363,7 @@ conferences:
 
   - name: IEEE ISM 2026
     short: ISM 2026
+    full_name: IEEE International Symposium on Multimedia
     url: https://www.multimediacomputing.org/
     tags: ["#ISM2026", "#MultimediaComputing"]
     deadlines:
@@ -352,6 +382,7 @@ conferences:
 
   - name: ACM Multimedia Asia 2026
     short: MMAsia 2026
+    full_name: ACM Multimedia Asia
     url: https://mmasia2026.org
     tags: ["#MMAsia2026", "#MultimediaAsia"]
     deadlines:
@@ -367,6 +398,7 @@ conferences:
 
   - name: QoMEX 2026
     short: QoMEX 2026
+    full_name: International Conference on Quality of Multimedia Experience
     url: https://qomex2026.itec.aau.at/
     tags: ["#QoMEX2026", "#QualityOfExperience"]
     deadlines:
@@ -376,6 +408,7 @@ conferences:
 
   - name: QoMEX 2027
     short: QoMEX 2027
+    full_name: International Conference on Quality of Multimedia Experience
     url: https://qomex2027.itec.aau.at/
     tags: ["#QoMEX2027", "#QualityOfExperience"]
     deadlines:
@@ -385,6 +418,7 @@ conferences:
 
   - name: MMM 2027
     short: MMM 2027
+    full_name: International Conference on MultiMedia Modeling
     url: https://mmm2027.net/
     tags: ["#MMM2027", "#MultimediaModeling"]
     deadlines:
@@ -403,6 +437,7 @@ conferences:
 
   - name: ACM MMSys 2027
     short: MMSys 2027
+    full_name: ACM Multimedia Systems Conference
     url: https://2027.acmmmsys.org/
     tags: ["#MMSys", "#MultimediaSystems"]
     bsky: mmsys.bsky.social

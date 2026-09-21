@@ -7,6 +7,7 @@ Configure credentials via environment variables or a .env file.
 """
 
 import os
+import sys
 import logging
 import random
 import re
@@ -136,6 +137,144 @@ def load_deadlines(path: Path = CONFERENCES_FILE) -> list[Deadline]:
                 bsky_handle=conf.get("bsky"),
             ))
     return deadlines
+
+
+def load_conferences(path: Path = CONFERENCES_FILE) -> list[dict]:
+    """Raw conference entries, for reporting that works per-conference."""
+    with open(path) as f:
+        return yaml.safe_load(f).get("conferences", [])
+
+
+def _conf_dates(conf: dict) -> list[date]:
+    out = []
+    for dl in conf.get("deadlines", []):
+        d = dl["date"]
+        out.append(d if isinstance(d, date) else date.fromisoformat(d))
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Maintenance reporting
+# ---------------------------------------------------------------------------
+
+# A conference whose only remaining entry is its conference date has no CFP
+# recorded — either it was never published, or it has been announced since.
+STALE_VERIFIED_DAYS = 90
+
+
+def maintenance_report(
+    conferences: list[dict], verified_days: int = STALE_VERIFIED_DAYS
+) -> dict[str, list]:
+    """Group conferences by the attention they need."""
+    today = date.today()
+    rollover, missing_cfp, unverified = [], [], []
+
+    for conf in conferences:
+        dates = _conf_dates(conf)
+        if not dates:
+            continue
+        upcoming = [d for d in dates if d >= today]
+
+        if not upcoming:
+            rollover.append((conf["short"], max(dates)))
+        else:
+            types = {dl["type"] for dl in conf["deadlines"]}
+            if types == {"conference"}:
+                missing_cfp.append((conf["short"], min(upcoming)))
+
+        # Optional `verified:` field — when a human last checked the source.
+        if raw := conf.get("verified"):
+            checked = raw if isinstance(raw, date) else date.fromisoformat(raw)
+            age = (today - checked).days
+            if age >= verified_days and upcoming:
+                unverified.append((conf["short"], checked, age))
+
+    return {
+        "rollover": sorted(rollover, key=lambda x: x[1]),
+        "missing_cfp": sorted(missing_cfp, key=lambda x: x[1]),
+        "unverified": sorted(unverified, key=lambda x: -x[2]),
+    }
+
+
+def print_maintenance_report(conferences: list[dict], verified_days: int) -> None:
+    report = maintenance_report(conferences, verified_days)
+    tracked = {c.get("verified") is not None for c in conferences}
+
+    if rows := report["rollover"]:
+        print(f"Needs rollover to the next edition ({len(rows)}):\n")
+        for short, last in rows:
+            print(f"  {short:<18} all dates passed, last {last}")
+        print()
+
+    if rows := report["missing_cfp"]:
+        print(f"No CFP deadlines recorded ({len(rows)}):\n")
+        for short, conf_date in rows:
+            print(f"  {short:<18} conference {conf_date}, deadlines missing")
+        print()
+
+    if rows := report["unverified"]:
+        print(f"Not verified in {verified_days}+ days ({len(rows)}):\n")
+        for short, checked, age in rows:
+            print(f"  {short:<18} last checked {checked} ({age} days ago)")
+        print()
+
+    if not any(report.values()):
+        print("Nothing needs attention.")
+        return
+
+    if True not in tracked:
+        print("Tip: add `verified: \"YYYY-MM-DD\"` to a conference to also track")
+        print("     how long it has been since someone checked its source page.")
+
+
+# ---------------------------------------------------------------------------
+# README conference table
+# ---------------------------------------------------------------------------
+
+README_FILE = Path(__file__).parent / "README.md"
+TABLE_BEGIN = "<!-- BEGIN CONFERENCE TABLE -->"
+TABLE_END = "<!-- END CONFERENCE TABLE -->"
+
+
+def acronym_of(short: str) -> str:
+    """'MMSys 2027' -> 'MMSys'. Editions collapse to one table row."""
+    return re.sub(r"\s*20\d\d$", "", short).strip()
+
+
+def render_conference_table(conferences: list[dict]) -> str:
+    rows: dict[str, str] = {}
+    for conf in conferences:
+        acronym = acronym_of(conf["short"])
+        # full_name is optional; fall back to the acronym so a new entry still
+        # appears in the table rather than silently vanishing from it.
+        rows.setdefault(acronym, conf.get("full_name") or acronym)
+
+    lines = ["| Acronym | Conference |", "|---|---|"]
+    lines += [f"| {a} | {rows[a]} |" for a in sorted(rows, key=str.lower)]
+    return "\n".join(lines)
+
+
+def write_conference_table(
+    conferences: list[dict], path: Path = README_FILE, check: bool = False
+) -> bool:
+    """Regenerate the table between the markers. Returns True if it changed."""
+    text = path.read_text()
+
+    if TABLE_BEGIN not in text or TABLE_END not in text:
+        raise RuntimeError(
+            f"{path.name} is missing the {TABLE_BEGIN} / {TABLE_END} markers."
+        )
+
+    head, rest = text.split(TABLE_BEGIN, 1)
+    _, tail = rest.split(TABLE_END, 1)
+    table = render_conference_table(conferences)
+    updated = f"{head}{TABLE_BEGIN}\n{table}\n{TABLE_END}{tail}"
+
+    if updated == text:
+        return False
+    if not check:
+        path.write_text(updated)
+    return True
 
 
 # ---------------------------------------------------------------------------
@@ -383,7 +522,29 @@ def main():
     parser.add_argument("--list", action="store_true", help="List upcoming deadlines and exit")
     parser.add_argument("--lookahead", type=int, default=LOOKAHEAD_DAYS,
                         help=f"Days lookahead window (default: {LOOKAHEAD_DAYS})")
+    parser.add_argument("--todo", action="store_true",
+                        help="Report conferences needing attention, and exit")
+    parser.add_argument("--verified-days", type=int, default=STALE_VERIFIED_DAYS,
+                        help=f"--todo: flag entries unverified for this many days "
+                             f"(default: {STALE_VERIFIED_DAYS})")
+    parser.add_argument("--readme-table", action="store_true",
+                        help="Regenerate the README conference table, and exit")
+    parser.add_argument("--check", action="store_true",
+                        help="With --readme-table: report drift without writing")
     args = parser.parse_args()
+
+    if args.todo:
+        print_maintenance_report(load_conferences(), args.verified_days)
+        return
+
+    if args.readme_table:
+        changed = write_conference_table(load_conferences(), check=args.check)
+        if args.check:
+            print("README table is out of date. Run: python bot.py --readme-table"
+                  if changed else "README table is up to date.")
+            return 1 if changed else 0
+        print("README table updated." if changed else "README table already up to date.")
+        return
 
     if args.list:
         deadlines = load_deadlines()
@@ -399,4 +560,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main() or 0)

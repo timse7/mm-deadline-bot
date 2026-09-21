@@ -8,6 +8,7 @@ typo cannot silently break the daily post. Exits non-zero on any error.
 Run locally before pushing:  python validate_conferences.py
 """
 
+import re
 import sys
 from datetime import date
 from pathlib import Path
@@ -17,7 +18,7 @@ import yaml
 from bot import CONFERENCES_FILE, TYPE_EMOJI
 
 REQUIRED_CONF_KEYS = {"name", "short", "deadlines"}
-OPTIONAL_CONF_KEYS = {"url", "tags", "bsky"}
+OPTIONAL_CONF_KEYS = {"url", "tags", "bsky", "full_name", "verified"}
 REQUIRED_DL_KEYS = {"type", "label", "date"}
 OPTIONAL_DL_KEYS = {"round", "stage"}
 VALID_TYPES = set(TYPE_EMOJI)
@@ -42,6 +43,7 @@ def validate(path: Path) -> list[str]:
         return ["'conferences' must be a non-empty list"]
 
     seen_shorts: dict[str, int] = {}
+    seen_full_names: dict[str, str] = {}
 
     for i, conf in enumerate(conferences):
         where = f"conference #{i + 1}"
@@ -85,6 +87,39 @@ def validate(path: Path) -> list[str]:
                     f"{where}: 'bsky' should be a bare handle like "
                     f"'name.bsky.social' (got {bsky!r})"
                 )
+
+        # full_name drives the README table; editions sharing an acronym must
+        # agree on it, or the generated table would depend on ordering.
+        if (full := conf.get("full_name")) is not None:
+            if not isinstance(full, str) or not full.strip():
+                errors.append(f"{where}: 'full_name' must be a non-empty string")
+            elif short := conf.get("short"):
+                acronym = re.sub(r"\s*20\d\d$", "", short).strip()
+                prev = seen_full_names.get(acronym)
+                if prev is not None and prev != full:
+                    errors.append(
+                        f"{where}: 'full_name' differs from another '{acronym}' "
+                        f"edition ({full!r} vs {prev!r})"
+                    )
+                else:
+                    seen_full_names[acronym] = full
+
+        if (raw_verified := conf.get("verified")) is not None:
+            if isinstance(raw_verified, date):
+                errors.append(
+                    f"{where}: verified {raw_verified} should be quoted, "
+                    f"e.g. \"{raw_verified}\""
+                )
+            elif isinstance(raw_verified, str):
+                try:
+                    if date.fromisoformat(raw_verified) > date.today():
+                        errors.append(f"{where}: 'verified' date is in the future")
+                except ValueError:
+                    errors.append(
+                        f"{where}: verified {raw_verified!r} is not valid ISO format"
+                    )
+            else:
+                errors.append(f"{where}: 'verified' must be a YYYY-MM-DD string")
 
         deadlines = conf.get("deadlines")
         if not isinstance(deadlines, list) or not deadlines:

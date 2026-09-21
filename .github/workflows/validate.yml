@@ -7,12 +7,16 @@ on:
     paths:
       - 'conferences.yaml'
       - 'bot.py'
+      - 'validate_conferences.py'
+      - 'README.md'
       - 'requirements.txt'
       - '.github/workflows/validate.yml'
   pull_request:
     paths:
       - 'conferences.yaml'
       - 'bot.py'
+      - 'validate_conferences.py'
+      - 'README.md'
       - 'requirements.txt'
   workflow_dispatch:
 
@@ -33,6 +37,11 @@ jobs:
 
       - name: Check schema and dates
         run: python validate_conferences.py
+
+      # The README table is generated from conferences.yaml, so it cannot drift
+      # unnoticed. Fix with: python bot.py --readme-table
+      - name: Check README conference table
+        run: python bot.py --readme-table --check
 
       # Exercises the real load + select + compose path, so a crash in post
       # composition is caught here rather than at 09:00 UTC tomorrow.

@@ -8,6 +8,7 @@ Live at **[@mmcountdown.eurosky.social](https://bsky.app/profile/mmcountdown.eur
 
 ## Supported Conferences
 
+<!-- BEGIN CONFERENCE TABLE -->
 | Acronym | Conference |
 |---|---|
 | ACMMM | ACM Multimedia |
@@ -36,6 +37,7 @@ Live at **[@mmcountdown.eurosky.social](https://bsky.app/profile/mmcountdown.eur
 | SIGCOMM | ACM Conference of the Special Interest Group on Data Communication |
 | VCIP | IEEE International Conference on Visual Communications and Image Processing |
 | WoWMoM | IEEE International Symposium on a World of Wireless, Mobile and Multimedia Networks |
+<!-- END CONFERENCE TABLE -->
 
 Editions, dates, and links live in [`conferences.yaml`](conferences.yaml). Missing a
 conference? Contributions welcome — see [Adding Conferences](#adding-conferences).
@@ -77,6 +79,12 @@ python bot.py --dry-run --lookahead 90
 
 # Validate conferences.yaml (schema, dates, duplicates)
 python validate_conferences.py
+
+# Report conferences needing attention (rollovers, missing CFPs, stale checks)
+python bot.py --todo
+
+# Regenerate the Supported Conferences table in this README
+python bot.py --readme-table
 ```
 
 ## Scheduling (macOS launchd)
@@ -166,8 +174,23 @@ rather than at post time.
 
 `validate_conferences.py` checks YAML parseability, required and unknown keys,
 valid deadline types, quoted ISO-8601 dates, `tags`/`round`/`stage` types, bare
-`bsky` handles, duplicate `short` names, and duplicate deadlines sharing the same
-type/round/stage.
+`bsky` handles, duplicate `short` names, duplicate deadlines sharing the same
+type/round/stage, and `full_name` agreement between editions of one conference.
+
+CI also runs `python bot.py --readme-table --check`, which fails if the Supported
+Conferences table no longer matches `conferences.yaml`.
+
+## Maintenance
+
+`python bot.py --todo` reports what needs attention:
+
+- **Needs rollover** — every date has passed, so the entry should be updated to
+  the next edition.
+- **No CFP deadlines recorded** — only a conference date is known, so the call
+  for papers may have been published since.
+- **Not verified in 90+ days** — for conferences carrying an optional
+  `verified: "YYYY-MM-DD"` field recording when someone last checked the source
+  page. Use `--verified-days N` to change the threshold.
 
 ## Adding Conferences
 
@@ -184,10 +207,12 @@ Edit [`conferences.yaml`](conferences.yaml). Each conference entry looks like:
 
 ```yaml
 - name: ACM Multimedia 2027
-  short: ACMMM 2027
+  short: ACMMM 2027               # acronym + year, used in posts
+  full_name: ACM Multimedia       # optional — shown in the table above
   url: https://acmmm2027.org
   tags: ["#ACMMM2027", "#MultimediaResearch"]
   bsky: acmmm.bsky.social         # optional — mentioned in individual posts
+  verified: "2027-01-15"          # optional — when the dates were last checked
   deadlines:
     - type: submission            # registration | submission | rebuttal |
       label: Full Paper Submission #   notification | camera_ready | conference
@@ -206,9 +231,9 @@ Before opening a pull request:
 
 1. Use quoted `"YYYY-MM-DD"` dates, and only dates published by the conference —
    don't fill gaps with estimates. Omit a deadline that hasn't been announced.
-2. Add the conference to the [Supported Conferences](#supported-conferences)
-   table above (acronym without the year).
-3. Run `python validate_conferences.py` — CI runs the same check on every push.
+2. Set `full_name`, then run `python bot.py --readme-table` to regenerate the
+   [Supported Conferences](#supported-conferences) table. Don't edit it by hand.
+3. Run `python validate_conferences.py` — CI runs the same checks on every push.
 
 Past deadlines need not be removed — see [Post Behavior](#post-behavior).
 

@@ -273,6 +273,21 @@ conferences:
         label: Show Opens
         date: "2026-09-11"
 
+  - name: NAB Broadcast Engineering and IT Conference 2027
+    short: NAB BEIT 2027
+    url: https://www.nab.org/documents/newsRoom/pressRelease.asp?id=7546
+    tags: ["#NABShow2027", "#BroadcastEngineering"]
+    deadlines:
+      - type: submission
+        label: Paper & Panel Proposals
+        date: "2026-10-23"
+      - type: notification
+        label: Acceptance Notification
+        date: "2026-12-15"
+      - type: conference
+        label: Conference Starts
+        date: "2027-04-04"
+
   - name: IEEE VCIP 2026
     short: VCIP 2026
     url: https://vcip-2026.org/

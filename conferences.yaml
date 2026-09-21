@@ -369,13 +369,13 @@ conferences:
     deadlines:
       - type: submission
         label: Full Paper Submission
-        date: "2026-09-01"
+        date: "2026-09-20"
       - type: notification
         label: Acceptance Notification
-        date: "2026-10-01"
+        date: "2026-10-18"
       - type: camera_ready
         label: Camera-Ready Deadline
-        date: "2026-11-11"
+        date: "2026-11-01"
       - type: conference
         label: Conference Starts
         date: "2026-12-07"

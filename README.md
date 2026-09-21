@@ -171,6 +171,15 @@ type/round/stage.
 
 ## Adding Conferences
 
+**Is a conference missing, or a deadline out of date?** You don't need to touch
+the code — just [open an issue](../../issues/new) with the conference name and a
+link to its call for papers, or reply to
+[@mmcountdown.eurosky.social](https://bsky.app/profile/mmcountdown.eurosky.social)
+on Bluesky. Extensions and corrections are especially welcome; deadlines move
+often and the bot is only as accurate as this file.
+
+If you'd rather submit it yourself, read on.
+
 Edit [`conferences.yaml`](conferences.yaml). Each conference entry looks like:
 
 ```yaml
@@ -193,8 +202,15 @@ Optional per-deadline qualifiers to distinguish otherwise-identical deadlines:
 - `round: N` → appends `(Round N)` — for multiple submission rounds (e.g. MMSys).
 - `stage: "Text"` → appends `(Text)` — for staged submissions (e.g. MHV `Abstract` then `Paper`).
 
-Dates must be quoted `"YYYY-MM-DD"` strings. Run `python validate_conferences.py`
-before committing — CI runs the same check.
+Before opening a pull request:
+
+1. Use quoted `"YYYY-MM-DD"` dates, and only dates published by the conference —
+   don't fill gaps with estimates. Omit a deadline that hasn't been announced.
+2. Add the conference to the [Supported Conferences](#supported-conferences)
+   table above (acronym without the year).
+3. Run `python validate_conferences.py` — CI runs the same check on every push.
+
+Past deadlines need not be removed — see [Post Behavior](#post-behavior).
 
 ## Post Behavior
 

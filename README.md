@@ -33,6 +33,7 @@ Live at **[@mmcountdown.eurosky.social](https://bsky.app/profile/mmcountdown.eur
 | MMSys | ACM Multimedia Systems Conference |
 | NAB BEIT | NAB Broadcast Engineering and IT Conference |
 | QoMEX | International Conference on Quality of Multimedia Experience |
+| SIGCOMM | ACM Conference of the Special Interest Group on Data Communication |
 | VCIP | IEEE International Conference on Visual Communications and Image Processing |
 | WoWMoM | IEEE International Symposium on a World of Wireless, Mobile and Multimedia Networks |
 

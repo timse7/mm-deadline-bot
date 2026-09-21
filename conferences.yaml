@@ -91,6 +91,17 @@ conferences:
         label: Conference Starts
         date: "2026-12-07"
 
+  # Deadlines not yet announced (as of Sep 2026) — only the conference date is
+  # known. Main Track CFP abstract registration is listed as TBA.
+  - name: ACM SIGCOMM 2027
+    short: SIGCOMM 2027
+    url: https://conferences.sigcomm.org/sigcomm/2027/
+    tags: ["#SIGCOMM2027", "#Networking"]
+    deadlines:
+      - type: conference
+        label: Conference Starts
+        date: "2027-08-08"
+
   - name: EMS 2026
     short: EMS 2026
     url: https://athena.itec.aau.at/ems-2026/

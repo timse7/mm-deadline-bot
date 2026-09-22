@@ -154,15 +154,19 @@ conferences:
         label: Conference Starts
         date: "2026-06-16"
 
-  - name: EUSIPCO 2026
-    short: EUSIPCO 2026
+  - name: EUSIPCO 2027
+    short: EUSIPCO 2027
     full_name: European Signal Processing Conference
-    url: https://eusipco2026.org
-    tags: ["#EUSIPCO2026", "#SignalProcessing"]
+    url: https://eusipco2027.de/
+    tags: ["#EUSIPCO2027", "#SignalProcessing"]
+    verified: "2026-09-22"
     deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2027-02-06"
       - type: conference
         label: Conference Starts
-        date: "2026-08-31"
+        date: "2027-08-30"
 
   - name: IEEE CBMI 2026
     short: CBMI 2026
@@ -265,24 +269,17 @@ conferences:
         label: Conference Starts
         date: "2027-05-16"
 
-  - name: IEEE ICIP 2026
-    short: ICIP 2026
+  # Conference dates announced (Singapore); the call for papers is not out yet.
+  - name: IEEE ICIP 2027
+    short: ICIP 2027
     full_name: IEEE International Conference on Image Processing
-    url: https://2026.ieeeicip.org
-    tags: ["#ICIP2026", "#ImageProcessing"]
+    url: https://2027.ieeeicip.org
+    tags: ["#ICIP2027", "#ImageProcessing"]
+    verified: "2026-09-22"
     deadlines:
-      - type: submission
-        label: Full Paper Submission
-        date: "2026-02-04"
-      - type: notification
-        label: Acceptance Notification
-        date: "2026-04-29"
-      - type: camera_ready
-        label: Camera-Ready Deadline
-        date: "2026-05-13"
       - type: conference
         label: Conference Starts
-        date: "2026-09-13"
+        date: "2027-11-29"
 
   - name: ACM Multimedia 2026
     short: ACMMM 2026
@@ -396,22 +393,19 @@ conferences:
         label: Conference Starts
         date: "2026-12-15"
 
-  - name: QoMEX 2026
-    short: QoMEX 2026
-    full_name: International Conference on Quality of Multimedia Experience
-    url: https://qomex2026.itec.aau.at/
-    tags: ["#QoMEX2026", "#QualityOfExperience"]
-    deadlines:
-      - type: conference
-        label: Conference Starts
-        date: "2026-06-30"
-
   - name: QoMEX 2027
     short: QoMEX 2027
     full_name: International Conference on Quality of Multimedia Experience
     url: https://qomex2027.itec.aau.at/
     tags: ["#QoMEX2027", "#QualityOfExperience"]
+    verified: "2026-09-22"
     deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2027-02-27"
+      - type: notification
+        label: Acceptance Notification
+        date: "2027-04-13"
       - type: conference
         label: Conference Starts
         date: "2027-07-06"

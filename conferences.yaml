@@ -144,15 +144,27 @@ conferences:
         label: Conference Starts
         date: "2026-06-16"
 
-  - name: WoWMoM 2026
-    short: WoWMoM 2026
-    full_name: IEEE International Symposium on a World of Wireless, Mobile and Multimedia Networks
-    url: https://www.cs.unibo.it/wowmom2026/
-    tags: ["#WoWMoM2026", "#WirelessMultimedia"]
+  # The 28th edition renamed itself from "Wireless, Mobile and Multimedia
+  # Networks" to "Wireless Mobility, IoT and Machine Learning".
+  - name: WoWMoM 2027
+    short: WoWMoM 2027
+    full_name: IEEE Symposium on a World of Wireless Mobility, IoT and Machine Learning
+    url: https://wowmom2027.dii.unipi.it/
+    tags: ["#WoWMoM2027", "#WirelessNetworking"]
+    verified: "2026-09-30"
     deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2026-12-01"
+      - type: notification
+        label: Acceptance Notification
+        date: "2027-02-10"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2027-05-05"
       - type: conference
         label: Conference Starts
-        date: "2026-06-16"
+        date: "2027-06-21"
 
   - name: EUSIPCO 2027
     short: EUSIPCO 2027

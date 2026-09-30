@@ -36,7 +36,7 @@ Live at **[@mmcountdown.eurosky.social](https://bsky.app/profile/mmcountdown.eur
 | QoMEX | International Conference on Quality of Multimedia Experience |
 | SIGCOMM | ACM Conference of the Special Interest Group on Data Communication |
 | VCIP | IEEE International Conference on Visual Communications and Image Processing |
-| WoWMoM | IEEE International Symposium on a World of Wireless, Mobile and Multimedia Networks |
+| WoWMoM | IEEE Symposium on a World of Wireless Mobility, IoT and Machine Learning |
 <!-- END CONFERENCE TABLE -->
 
 Editions, dates, and links live in [`conferences.yaml`](conferences.yaml). Missing a

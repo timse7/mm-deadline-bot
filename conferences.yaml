@@ -73,7 +73,7 @@ conferences:
     deadlines:
       - type: submission
         label: Full Paper Submission
-        date: "2026-10-02"
+        date: "2026-10-09"
       - type: notification
         label: Acceptance Notification
         date: "2026-11-22"

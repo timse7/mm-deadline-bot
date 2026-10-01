@@ -166,6 +166,29 @@ conferences:
         label: Conference Starts
         date: "2027-06-21"
 
+  - name: ACM IMX 2027
+    short: IMX 2027
+    full_name: ACM International Conference on Interactive Media Experiences
+    url: https://imx.acm.org/2027/
+    tags: ["#IMX2027", "#InteractiveMedia"]
+    verified: "2026-10-01"
+    deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2027-01-21"
+      - type: rebuttal
+        label: Rebuttal Submission
+        date: "2027-03-09"
+      - type: notification
+        label: Final Decision Notification
+        date: "2027-03-23"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2027-04-14"
+      - type: conference
+        label: Conference Starts
+        date: "2027-06-15"
+
   - name: EUSIPCO 2027
     short: EUSIPCO 2027
     full_name: European Signal Processing Conference

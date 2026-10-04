@@ -34,6 +34,7 @@ Live at **[@mmcountdown.eurosky.social](https://bsky.app/profile/mmcountdown.eur
 | MMSP | IEEE International Workshop on Multimedia Signal Processing |
 | MMSys | ACM Multimedia Systems Conference |
 | NAB BEIT | NAB Broadcast Engineering and IT Conference |
+| PCS | Picture Coding Symposium |
 | QoMEX | International Conference on Quality of Multimedia Experience |
 | SIGCOMM | ACM Conference of the Special Interest Group on Data Communication |
 | VCIP | IEEE International Conference on Visual Communications and Image Processing |

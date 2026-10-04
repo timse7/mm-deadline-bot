@@ -358,6 +358,27 @@ conferences:
         label: Conference Starts
         date: "2027-04-04"
 
+  # Site is hosted by Warwick (the organisers), not on a pcs2027 domain.
+  - name: Picture Coding Symposium 2027
+    short: PCS 2027
+    full_name: Picture Coding Symposium
+    url: https://warwick.ac.uk/fac/sci/dcs/pcs2027/
+    tags: ["#PCS2027", "#VideoCoding"]
+    verified: "2026-10-04"
+    deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2027-01-26"
+      - type: notification
+        label: Acceptance Notification
+        date: "2027-03-09"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2027-03-23"
+      - type: conference
+        label: Conference Starts
+        date: "2027-06-07"
+
   - name: IEEE VCIP 2026
     short: VCIP 2026
     full_name: IEEE International Conference on Visual Communications and Image Processing

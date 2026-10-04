@@ -275,15 +275,18 @@ conferences:
         label: Conference Starts
         date: "2027-02-27"
 
-  - name: IEEE ICME 2026
-    short: ICME 2026
+  # Conference dates announced, but neither the website nor the call for
+  # papers is online yet -- so no url, to keep a dead link out of the posts.
+  # Add https://2027.ieeeicme.org once it resolves (it does not as of Oct 2026).
+  - name: IEEE ICME 2027
+    short: ICME 2027
     full_name: IEEE International Conference on Multimedia & Expo
-    url: https://2026.ieeeicme.org
-    tags: ["#ICME2026", "#MultimediaExpo"]
+    tags: ["#ICME2027", "#MultimediaExpo"]
+    verified: "2026-10-04"
     deadlines:
       - type: conference
         label: Conference Starts
-        date: "2026-07-05"
+        date: "2027-07-13"
 
   - name: IEEE ICASSP 2027
     short: ICASSP 2027

@@ -134,15 +134,25 @@ conferences:
         label: Conference Starts
         date: "2026-12-07"
 
-  - name: ACM ICMR 2026
-    short: ICMR 2026
+  - name: ACM ICMR 2027
+    short: ICMR 2027
     full_name: ACM International Conference on Multimedia Retrieval
-    url: https://icmr2026.org
-    tags: ["#ICMR2026", "#MultimediaRetrieval"]
+    url: https://www.icmr2027.org/
+    tags: ["#ICMR2027", "#MultimediaRetrieval"]
+    verified: "2026-10-04"
     deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2027-01-31"
+      - type: notification
+        label: Acceptance Notification
+        date: "2027-04-01"
+      - type: camera_ready
+        label: Camera-Ready Deadline
+        date: "2027-04-10"
       - type: conference
         label: Conference Starts
-        date: "2026-06-16"
+        date: "2027-06-07"
 
   # The 28th edition renamed itself from "Wireless, Mobile and Multimedia
   # Networks" to "Wireless Mobility, IoT and Machine Learning".

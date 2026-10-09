@@ -22,11 +22,12 @@ conferences:
     full_name: ACM Mile-High Video
     url: https://www.mile-high.video/
     tags: ["#MHV2027", "#VideoTechnology"]
+    verified: "2026-10-09"
     deadlines:
       - type: submission
         label: Abstract Submission
         stage: Abstract
-        date: "2026-10-09"
+        date: "2026-10-23"   # extended from 2026-10-09, firm
       - type: notification
         label: Acceptance Notification
         stage: Abstract

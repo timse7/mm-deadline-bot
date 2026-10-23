@@ -104,14 +104,18 @@ conferences:
         label: Conference Starts
         date: "2026-12-07"
 
-  # Deadlines not yet announced (as of Sep 2026) — only the conference date is
-  # known. Main Track CFP abstract registration is listed as TBA.
+  # CFP posted 19 Oct 2026, listing a single main-conference submission
+  # deadline -- no notification or camera-ready dates published yet.
   - name: ACM SIGCOMM 2027
     short: SIGCOMM 2027
     full_name: ACM Conference of the Special Interest Group on Data Communication
     url: https://conferences.sigcomm.org/sigcomm/2027/
     tags: ["#SIGCOMM2027", "#Networking"]
+    verified: "2026-10-23"
     deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2027-02-02"
       - type: conference
         label: Conference Starts
         date: "2027-08-08"
@@ -286,15 +290,19 @@ conferences:
         label: Conference Starts
         date: "2027-02-27"
 
-  # Conference dates announced, but neither the website nor the call for
-  # papers is online yet -- so no url, to keep a dead link out of the posts.
-  # Add https://2027.ieeeicme.org once it resolves (it does not as of Oct 2026).
   - name: IEEE ICME 2027
     short: ICME 2027
     full_name: IEEE International Conference on Multimedia & Expo
+    url: https://2027.ieeeicme.org
     tags: ["#ICME2027", "#MultimediaExpo"]
-    verified: "2026-10-04"
+    verified: "2026-10-23"
     deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2026-12-30"
+      - type: notification
+        label: Acceptance Notification
+        date: "2027-03-24"
       - type: conference
         label: Conference Starts
         date: "2027-07-13"

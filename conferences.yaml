@@ -326,14 +326,19 @@ conferences:
         label: Conference Starts
         date: "2027-05-16"
 
-  # Conference dates announced (Singapore); the call for papers is not out yet.
+  # The site still has no authors section or call for papers, so only the
+  # conference dates come from it. Submission deadline supplied separately;
+  # re-check once the CFP is published.
   - name: IEEE ICIP 2027
     short: ICIP 2027
     full_name: IEEE International Conference on Image Processing
     url: https://2027.ieeeicip.org
     tags: ["#ICIP2027", "#ImageProcessing"]
-    verified: "2026-09-22"
+    verified: "2026-10-23"
     deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2027-03-31"
       - type: conference
         label: Conference Starts
         date: "2027-11-29"

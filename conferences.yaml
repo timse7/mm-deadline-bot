@@ -307,6 +307,26 @@ conferences:
         label: Conference Starts
         date: "2027-07-13"
 
+  - name: DSP 2027
+    short: DSP 2027
+    full_name: International Conference on Digital Signal Processing
+    url: https://www.dsp2027.com/
+    tags: ["#DSP2027", "#SignalProcessing"]
+    verified: "2026-11-03"
+    deadlines:
+      - type: submission
+        label: Full Paper Submission
+        date: "2027-01-23"
+      - type: notification
+        label: Acceptance Notification
+        date: "2027-03-23"
+      - type: camera_ready
+        label: Camera-Ready & Author Advance Registration
+        date: "2027-04-23"
+      - type: conference
+        label: Conference Starts
+        date: "2027-06-28"
+
   - name: IEEE ICASSP 2027
     short: ICASSP 2027
     full_name: IEEE International Conference on Acoustics, Speech and Signal Processing

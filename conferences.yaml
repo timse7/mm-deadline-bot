@@ -11,6 +11,9 @@
 #   bsky           -> conference handle, mentioned in individual posts
 #   verified       -> "YYYY-MM-DD" when the dates were last checked at the source
 #
+# `deadlines: []` is allowed for a conference announced without any dates yet;
+# nothing is posted about it and --todo keeps listing it.
+#
 # After editing, run:
 #   python validate_conferences.py     # schema and date checks
 #   python bot.py --readme-table       # regenerate the README table
@@ -248,16 +251,16 @@ conferences:
         label: Conference Starts
         date: "2026-09-28"
 
-  - name: IEEE ISMAR 2026
-    short: ISMAR 2026
+  # Site is up (Kobe, Japan) but every date, the conference itself included,
+  # is still "to be announced". Tracked with no deadlines so `--todo` keeps
+  # reminding us to check back.
+  - name: IEEE ISMAR 2027
+    short: ISMAR 2027
     full_name: IEEE International Symposium on Mixed and Augmented Reality
-    url: https://www.ieeeismar.net/2026/
-    tags: ["#ISMAR2026", "#MixedReality"]
-    bsky: ieeeismar2026.bsky.social
-    deadlines:
-      - type: conference
-        label: Conference Starts
-        date: "2026-10-05"
+    url: https://www.ieeeismar.net/2027/
+    tags: ["#ISMAR2027", "#MixedReality"]
+    verified: "2026-11-05"
+    deadlines: []
 
   - name: IEEE VR 2027
     short: IEEE VR 2027

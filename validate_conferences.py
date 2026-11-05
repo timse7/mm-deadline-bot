@@ -122,9 +122,11 @@ def validate(path: Path) -> list[str]:
                 errors.append(f"{where}: 'verified' must be a YYYY-MM-DD string")
 
         deadlines = conf.get("deadlines")
-        if not isinstance(deadlines, list) or not deadlines:
-            errors.append(f"{where}: 'deadlines' must be a non-empty list")
+        if not isinstance(deadlines, list):
+            errors.append(f"{where}: 'deadlines' must be a list")
             continue
+        # An empty list is allowed: a conference announced with no dates yet.
+        # `bot.py --todo` lists those so they are not forgotten.
 
         seen_deadlines: set[tuple] = set()
 

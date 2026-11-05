@@ -167,11 +167,14 @@ def maintenance_report(
 ) -> dict[str, list]:
     """Group conferences by the attention they need."""
     today = date.today()
-    rollover, missing_cfp, unverified = [], [], []
+    rollover, missing_cfp, unverified, no_dates = [], [], [], []
 
     for conf in conferences:
         dates = _conf_dates(conf)
         if not dates:
+            # Announced, but nothing scheduled yet — tracked so it is not
+            # forgotten once the organisers publish anything at all.
+            no_dates.append(conf["short"])
             continue
         upcoming = [d for d in dates if d >= today]
 
@@ -193,6 +196,7 @@ def maintenance_report(
         "rollover": sorted(rollover, key=lambda x: x[1]),
         "missing_cfp": sorted(missing_cfp, key=lambda x: x[1]),
         "unverified": sorted(unverified, key=lambda x: -x[2]),
+        "no_dates": sorted(no_dates),
     }
 
 
@@ -210,6 +214,12 @@ def print_maintenance_report(conferences: list[dict], verified_days: int) -> Non
         print(f"No CFP deadlines recorded ({len(rows)}):\n")
         for short, conf_date in rows:
             print(f"  {short:<18} conference {conf_date}, deadlines missing")
+        print()
+
+    if rows := report["no_dates"]:
+        print(f"No dates announced at all ({len(rows)}):\n")
+        for short in rows:
+            print(f"  {short:<18} placeholder entry, nothing published yet")
         print()
 
     if rows := report["unverified"]:

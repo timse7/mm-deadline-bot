@@ -191,6 +191,8 @@ Conferences table no longer matches `conferences.yaml`.
   the next edition.
 - **No CFP deadlines recorded** — only a conference date is known, so the call
   for papers may have been published since.
+- **No dates announced at all** — a placeholder entry (`deadlines: []`) for a
+  conference whose site is up but carries no dates yet.
 - **Not verified in 90+ days** — for conferences carrying an optional
   `verified: "YYYY-MM-DD"` field recording when someone last checked the source
   page. Use `--verified-days N` to change the threshold.
@@ -224,6 +226,10 @@ Edit [`conferences.yaml`](conferences.yaml). Each conference entry looks like:
       label: Conference Starts
       date: "2027-10-20"
 ```
+
+A conference whose site is up but announces no dates yet can be added with
+`deadlines: []`. Nothing is posted about it, and `--todo` keeps listing it until
+something is published.
 
 Optional per-deadline qualifiers to distinguish otherwise-identical deadlines:
 

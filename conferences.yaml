@@ -448,21 +448,27 @@ conferences:
         label: Conference Starts
         date: "2026-12-13"
 
-  - name: IEEE MMSP 2026
-    short: MMSP 2026
+  # 29th edition, Klagenfurt 6-8 Oct 2027. Dates from the one-page CFP;
+  # https://2027.ieeemmsp.org/ is registered but still empty.
+  - name: IEEE MMSP 2027
+    short: MMSP 2027
     full_name: IEEE International Workshop on Multimedia Signal Processing
-    url: https://attend.ieee.org/mmsp-2026/
-    tags: ["#MMSP2026", "#MultimediaSignalProcessing"]
+    url: https://2027.ieeemmsp.org/
+    tags: ["#MMSP2027", "#MultimediaSignalProcessing"]
+    verified: "2026-11-06"
     deadlines:
+      - type: submission
+        label: Paper Submission
+        date: "2027-05-14"
       - type: notification
         label: Acceptance Notification
-        date: "2026-07-17"
+        date: "2027-07-16"
       - type: camera_ready
         label: Camera-Ready Deadline
-        date: "2026-07-31"
+        date: "2027-07-30"
       - type: conference
         label: Conference Starts
-        date: "2026-09-22"
+        date: "2027-10-06"
 
   - name: IEEE ISM 2026
     short: ISM 2026

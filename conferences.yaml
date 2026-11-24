@@ -25,7 +25,7 @@ conferences:
     full_name: ACM Mile-High Video
     url: https://www.mile-high.video/
     tags: ["#MHV2027", "#VideoTechnology"]
-    verified: "2026-10-09"
+    verified: "2026-11-24"
     deadlines:
       - type: submission
         label: Abstract Submission
@@ -34,7 +34,7 @@ conferences:
       - type: notification
         label: Acceptance Notification
         stage: Abstract
-        date: "2026-11-20"
+        date: "2026-11-25"   # moved from 2026-11-20
       - type: submission
         label: Full Paper Submission
         stage: Paper
@@ -55,10 +55,11 @@ conferences:
     full_name: IEEE International Conference on Communications — Communication Software and Multimedia Symposium
     url: https://icc2027.ieee-icc.org/
     tags: ["#ICC2027", "#MultimediaCommunications"]
+    verified: "2026-11-24"
     deadlines:
       - type: submission
         label: Full Paper Submission
-        date: "2026-10-02"
+        date: "2026-10-30"   # extended from 2026-10-02, firm
       - type: notification
         label: Acceptance Notification
         date: "2027-01-15"
@@ -74,6 +75,10 @@ conferences:
     full_name: Data Compression Conference
     url: https://datacompressionconference.org/
     tags: ["#DCC2027", "#DataCompression"]
+    verified: "2026-11-24"
+    # Final paper deadline was 2026-12-09, now "to be announced shortly".
+    # Author registration moved to 2026-12-11, but there is no deadline type
+    # for it, so it is not tracked here.
     deadlines:
       - type: submission
         label: Full Paper Submission
@@ -81,9 +86,6 @@ conferences:
       - type: notification
         label: Acceptance Notification
         date: "2026-11-22"
-      - type: camera_ready
-        label: Final Paper Submission & Author Registration
-        date: "2026-12-09"
       - type: conference
         label: Conference Starts
         date: "2027-03-23"
@@ -114,7 +116,7 @@ conferences:
     full_name: ACM Conference of the Special Interest Group on Data Communication
     url: https://conferences.sigcomm.org/sigcomm/2027/
     tags: ["#SIGCOMM2027", "#Networking"]
-    verified: "2026-10-23"
+    verified: "2026-11-24"
     deadlines:
       - type: submission
         label: Full Paper Submission
@@ -147,7 +149,7 @@ conferences:
     full_name: ACM International Conference on Multimedia Retrieval
     url: https://www.icmr2027.org/
     tags: ["#ICMR2027", "#MultimediaRetrieval"]
-    verified: "2026-10-04"
+    verified: "2026-11-24"
     deadlines:
       - type: submission
         label: Full Paper Submission
@@ -169,7 +171,7 @@ conferences:
     full_name: IEEE Symposium on a World of Wireless Mobility, IoT and Machine Learning
     url: https://wowmom2027.dii.unipi.it/
     tags: ["#WoWMoM2027", "#WirelessNetworking"]
-    verified: "2026-09-30"
+    verified: "2026-11-24"
     deadlines:
       - type: submission
         label: Full Paper Submission
@@ -189,7 +191,7 @@ conferences:
     full_name: ACM International Conference on Interactive Media Experiences
     url: https://imx.acm.org/2027/
     tags: ["#IMX2027", "#InteractiveMedia"]
-    verified: "2026-10-01"
+    verified: "2026-11-24"
     deadlines:
       - type: submission
         label: Full Paper Submission
@@ -259,7 +261,7 @@ conferences:
     full_name: IEEE International Symposium on Mixed and Augmented Reality
     url: https://www.ieeeismar.net/2027/
     tags: ["#ISMAR2027", "#MixedReality"]
-    verified: "2026-11-05"
+    verified: "2026-11-24"
     deadlines: []
 
   - name: IEEE VR 2027
@@ -267,6 +269,7 @@ conferences:
     full_name: IEEE Conference on Virtual Reality and 3D User Interfaces
     url: https://ieeevr.org/2027/
     tags: ["#IEEEVR2027", "#VirtualReality"]
+    verified: "2026-11-24"
     deadlines:
       - type: registration
         label: Abstracts Due (required)
@@ -298,11 +301,14 @@ conferences:
     full_name: IEEE International Conference on Multimedia & Expo
     url: https://2027.ieeeicme.org
     tags: ["#ICME2027", "#MultimediaExpo"]
-    verified: "2026-10-23"
+    verified: "2026-11-24"
     deadlines:
       - type: submission
         label: Full Paper Submission
         date: "2026-12-30"
+      - type: rebuttal
+        label: Author Rebuttal Ends
+        date: "2027-03-04"
       - type: notification
         label: Acceptance Notification
         date: "2027-03-24"
@@ -315,7 +321,7 @@ conferences:
     full_name: International Conference on Digital Signal Processing
     url: https://www.dsp2027.com/
     tags: ["#DSP2027", "#SignalProcessing"]
-    verified: "2026-11-03"
+    verified: "2026-11-24"
     deadlines:
       - type: submission
         label: Full Paper Submission
@@ -335,6 +341,7 @@ conferences:
     full_name: IEEE International Conference on Acoustics, Speech and Signal Processing
     url: https://2027.ieeeicassp.org/
     tags: ["#ICASSP2027", "#SignalProcessing"]
+    verified: "2026-11-24"
     deadlines:
       - type: submission
         label: Full Paper Submission
@@ -357,7 +364,7 @@ conferences:
     full_name: IEEE International Conference on Image Processing
     url: https://2027.ieeeicip.org
     tags: ["#ICIP2027", "#ImageProcessing"]
-    verified: "2026-10-23"
+    verified: "2026-11-24"
     deadlines:
       - type: submission
         label: Full Paper Submission
@@ -366,31 +373,29 @@ conferences:
         label: Conference Starts
         date: "2027-11-29"
 
-  - name: ACM Multimedia 2026
-    short: ACMMM 2026
+  # Hong Kong, 8-12 Nov 2027. Only the conference dates are out; the site so
+  # far has just a call for area chairs and reviewers.
+  - name: ACM Multimedia 2027
+    short: ACMMM 2027
     full_name: ACM Multimedia
-    url: https://2026.acmmm.org
-    tags: ["#ACMMM2026", "#MultimediaResearch"]
+    url: https://2027.acmmm.org
+    tags: ["#ACMMM2027", "#MultimediaResearch"]
+    verified: "2026-11-24"
     deadlines:
-      - type: notification
-        label: Acceptance Notification
-        date: "2026-07-09"
-      - type: camera_ready
-        label: Camera-Ready Deadline
-        date: "2026-08-06"
       - type: conference
         label: Conference Starts
-        date: "2026-11-10"
+        date: "2027-11-08"
 
-  - name: IBC 2026
-    short: IBC 2026
+  - name: IBC 2027
+    short: IBC 2027
     full_name: International Broadcasting Convention
     url: https://show.ibc.org
-    tags: ["#IBC2026", "#Broadcasting"]
+    tags: ["#IBC2027", "#Broadcasting"]
+    verified: "2026-11-24"
     deadlines:
       - type: conference
         label: Show Opens
-        date: "2026-09-11"
+        date: "2027-09-10"
 
   - name: NAB Broadcast Engineering and IT Conference 2027
     short: NAB BEIT 2027
@@ -414,7 +419,7 @@ conferences:
     full_name: Picture Coding Symposium
     url: https://warwick.ac.uk/fac/sci/dcs/pcs2027/
     tags: ["#PCS2027", "#VideoCoding"]
-    verified: "2026-10-04"
+    verified: "2026-11-24"
     deadlines:
       - type: submission
         label: Full Paper Submission
@@ -510,14 +515,14 @@ conferences:
     full_name: International Conference on Quality of Multimedia Experience
     url: https://qomex2027.itec.aau.at/
     tags: ["#QoMEX2027", "#QualityOfExperience"]
-    verified: "2026-10-23"
+    verified: "2026-11-24"
     deadlines:
       - type: submission
         label: Full Paper Submission
-        date: "2027-02-27"
+        date: "2027-02-13"   # moved earlier from 2027-02-27
       - type: notification
         label: Acceptance Notification
-        date: "2027-04-13"
+        date: "2027-04-10"   # moved earlier from 2027-04-13
       - type: conference
         label: Conference Starts
         date: "2027-07-06"
@@ -547,6 +552,7 @@ conferences:
     url: https://2027.acmmmsys.org/
     tags: ["#MMSys", "#MultimediaSystems"]
     bsky: mmsys.bsky.social
+    verified: "2026-11-24"
     deadlines:
       - type: registration
         label: Paper Registration
@@ -563,7 +569,7 @@ conferences:
       - type: registration
         label: Paper Registration
         round: 2
-        date: "2026-11-12"
+        date: "2026-11-19"   # extended from 2026-11-12
       - type: submission
         label: Full Paper Submission
         round: 2
